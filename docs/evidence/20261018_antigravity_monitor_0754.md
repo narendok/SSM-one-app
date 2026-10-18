@@ -14,3 +14,17 @@ Source findings requiring completion:
 3. Earlier import-review verification is still only an in-memory VERIFIED_FOR_RECEIVING state; no persisted protected approval was added in that file.
 
 No business mutation or stock action was tested. UI/backend/least-privilege and offline recovery acceptance remain pending. Continue observing Antigravity without overwriting active edits; do not claim full app acceptance from passing build/tests/resume.
+
+## 08:04Z committed checkpoint
+
+Antigravity committed the previously inspected changes at f378622. Fetch confirms local/upstream divergence 0/0. Working tree was clean before this monitoring note. APK SHA-256 remains 8c0bdc9041c0af0eef18dfed3b90935b71e7931c565a8d20a69f2bb3024e1522, exactly matching the already verified installed/resumed artifact; no repeated build, tests, launch or screenshots were needed. Existing 87-test reports remain dated 13:24:44 local.
+
+The earlier PCB write/readback and DRAFT-only sync findings remain in current source. The feature report's WorkspacePolicy unit tests validate local navigation rules; they do not establish backend least-privilege/RLS acceptance. No new live workflow acceptance is claimed and no Antigravity source was modified.
+
+## 08:25Z unchanged checkpoint
+
+Local and fetched upstream remain f378622 (0/0). No feature source changes; debug APK hash still matches the previously verified artifact. PCB draft-only sync finding persists. Skipped repeated builds, tests, launch and screenshots; no new acceptance claimed.
+
+## 09:08Z renamed-entry checkpoint
+
+Monitoring through SSMone/SSMone-App succeeds and resolves the original repository. Local/upstream remain at the naming checkpoint 55dfecc (0/0); no new feature source edits. APK hash matches the renamed build already installed/resumed during naming verification. PCB draft-only sync finding and stale backend handoff remain unchanged. No repeat build/test/device action or screenshot; no new workflow acceptance claimed.
