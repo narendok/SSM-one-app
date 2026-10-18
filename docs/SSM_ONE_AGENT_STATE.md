@@ -1,0 +1,55 @@
+# SSM One Android — Agent State
+
+Last verified: 2026-10-03
+
+## Final-framework implementation checkpoint — 2026-10-03
+
+Follow-on Drive increment: [category implementation report](evidence/department-drive-categories-2026-10-03.md).
+Android now filters Common and Project Deliverables using verified root kinds;
+Reviews explicitly reports missing backend mapping. Compile, **79 tests**, build
+and in-place emulator update passed. Latest APK SHA-256:
+`707b1b80f489ea21c0acfd4c34b90a0f58fb2327fb8cc1974a7da2f8a6341f31`.
+Common/Projects/Reviews and HR scope reset were checked on the emulator. Lovable
+reports a read-only `/admin/drive-ownership` preflight and an UNAPPLIED review
+mapping proposal, with 12 focused tests/typecheck/build passing. It has not
+reassigned legacy ownership or deployed the proposed review mapping.
+Independent admin preview checks found and led to repairs of child-route
+rendering and FILE/revision gap counting. The served preflight now shows 8
+unmapped projects, 9 missing Drive revisions and 2 missing BOM source/revision
+links. This is metadata visibility, not byte retrieval or non-admin acceptance.
+
+- Final user DOCX and all three planning artefacts were uploaded to the existing Lovable project. Source-only Pack 1 work was dispatched and reported complete; the full lifecycle target is not complete.
+- Android project Documents now uses the shared department Drive with both project and department scope, including request/history/file-open invalidation on scope changes. Removed the older unscoped engineering Documents entry point.
+- Procurement line reads now use the verified `operational_receiving_purchase_order_items` projection only for visible operational POs; fractional and missing quantities are preserved.
+- Read-only lifecycle stages now show pinned template/version references and both legacy and multi-predecessor dependencies, using the exported October 2 contract. No lifecycle action RPC is enabled.
+- Compile, 76 unit tests (zero failures/errors/skips), debug build and emulator update passed. Original debug signer was reused; login/data preserved. Final APK SHA-256: `552863694ec90c2f26b88253eddd760f5b2614032f89b4b5d7dce10273bdb83a`.
+- Emulator verified operational PO/part/vendors, project Documents entry point and HR-specific Work/More presentation. Admin-selected departments do not establish least-privilege acceptance.
+- Lovable reports a read-only scoped lifecycle template register at `/settings/lifecycle`, correct three-category Drive presentation and BOM-query restrictions for excluded departments even when a project is selected. Source tests/build are reported evidence, not independent database acceptance.
+- Emulator_V2.0 project and Drive nodes have NULL department ownership; its saved BOM lacks source Drive node/revision. No historical ownership or file provenance was guessed or changed. Periodic/conditional review folder mapping remains absent.
+- Protected lifecycle action deployment and DB rollback/concurrency/non-admin RLS acceptance remain blocked by missing isolated test support and approved identities. Preserve all existing roles/departments and RLS.
+
+Current evidence: [implementation report](evidence/final-framework-implementation-2026-10-03.md), [actual rendered web contract](backend-handoff/LIFECYCLE_ANDROID_READ_CONTRACT_RENDERED_2026-10-03.txt), and [legacy Drive mapping](evidence/lovable-legacy-drive-mapping-verification-2026-10-03.txt).
+
+The historical September checkpoint below remains dated evidence, not the current instruction to submit a live GRN.
+
+## Stage 5 status
+
+- 5A Procurement read-only: implemented and compiled.
+- 5B Receiving Draft: local draft capture implemented; final GRN is online-only through `create_grn`.
+- 5C Inventory read-only: implemented.
+- 5D Material Issue / Return: protected server contract flows implemented.
+- 5E Cycle Count / Picking: blocked pending a verified backend contract.
+- 5F GRN, stock adjustment and stock transfer: protected contract flows implemented. Live stock-changing GRN/transfer acceptance remains intentionally unposted.
+- 5G: compact My Day, scanner lookup, My Work, and notification read views implemented. Mobile live read acceptance has verified inventory lookup and My Work tasks. Notification view was RLS-empty for the signed-in account.
+
+## Current controlled next action
+
+The next live stock-changing acceptance is a final GRN against the approved dedicated test PO. It must be submitted with real test receipt values and is not performed merely by opening the screen.
+## Latest verification — 2026-09-27
+
+- The dedicated Android Sync Test Vendor PO `PO-2026-0001` is visible in Receiving as DRAFT with one VNH7040AYTR line and 1 remaining.
+- The final GRN view clearly identifies its server-controlled transaction and requires invoice number, ISO date, a valid positive receipt, and a review step.
+- A malformed test entry left the Review final GRN control disabled. The unsaved app state was discarded; no server transaction was invoked and the backend PO remains unchanged.
+- Compile, unit test, and debug APK build gate completed without test failures.
+
+- Repeated UAT form-entry checks left Review final GRN disabled when the required receipt fields were not valid; all unsaved form state was discarded and no GRN RPC was called.

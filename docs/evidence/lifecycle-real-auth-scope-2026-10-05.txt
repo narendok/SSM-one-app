@@ -1,0 +1,3 @@
+SQL query results
+proof
+{"manager_admin":false,"manager_department_permission":true,"manager_exists":true,"outsider_admin":false,"outsider_department_permission":false,"outsider_exists":true}

@@ -1,0 +1,86 @@
+rc/lib/lifecycle-actions.contract.test.ts
+src/lib/department-drive-navigation.ts
+src/lib/department-drive-navigation.test.ts
+LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md
+
+Updated
+
+src/components/drive/DriveBrowser.tsx — scoped Common / Internal projects / Client projects metadata indicators.
+LIFECYCLE_SCHEMA_PATCH_PENDING.md — marks historical SQL as non-reapplicable review history.
+AGENTS.md, roadmap.md — record the gated façade and Pack 0 blocker.
+
+Validation
+
+8/8 focused tests passed.
+Typecheck passed.
+Preview build passed.
+No additional live SQL, access expansion, roles, departments, templates, certificates, or operational data were created. Source-only Pack 1 is complete: the dated Android contract, gated lifecycle façade, and three-category Drive metadata navigation are in place; 8 focused tests and typecheck passed, with no new live database changes.
+
+Source Pack 1 is still PARTIAL: Common / Internal projects / Client projects is the old Drive grouping, not the attached final taxonomy. Implement exactly Common Controlled Documents / Periodic and Conditional Reviews / Project Deliverables for EACH of the eight existing departments. Internal vs client is a secondary project filter, not one of those three categories. Reuse existing authoritative folder_kind/metadata only after verifying actual keys/values; report missing mapping instead of renaming/moving historical folders or changing ownership. Actual template edit/clone/activate/retire lead settings UI is still needed; implement permitted draft settings and clearly disabled online activation until tested protected action contracts are accepted. Do not label a gated facade or metadata indicator as completed lead management. Add tests for category mapping, unmapped records, HR/security exclusion and department/project switching; typecheck/build. Also print the COMPLETE exact contents of LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md, including real signatures/arguments, columns and migration hashes, so I can retain the authoritative local handoff. Do not apply more live SQL, change roles/access, or publish.
+
+Show more
+Today at 4:09 AM
+Starting the Pack 1 correction
+
+I’ll replace the old Drive grouping with the final taxonomy and add a clearly gated lead-settings interface without changing live access.
+
+Review settings tests finished
+Done
+Verify Drive taxonomy fields
+1m 6s
+Done
+Review settings tests
+45s
+
+Served-preview observation during this run: Finance Drive still displays a Project BOMs tab. Include Finance, HR, Facility/security, Sales and Operations in the unrelated-department menu/query regression tests. Match Android: BOM browsing belongs only to authorized engineering/procurement/production presentation; unrelated departments must not make BOM queries. Existing backend RLS remains final. This is a source/UI correction, not permission to alter roles or RLS. Final three categories remain Common Controlled Documents / Periodic and Conditional Reviews / Project Deliverables.
+
+Show more
+Today at 4:12 AM
+Adding the Finance Drive correction
+
+I’m finishing the final taxonomy and will now restrict BOM browsing and queries to the permitted department presentations.
+
+Restricted BOM access to R&D
+Details
+Preview
+
+Finance Drive now hides Project BOMs; BOM queries are UI-gated to R&D, Procurement, Production, or a selected project.
+Tests: 14 passed; typecheck passed. The final taxonomy remains unchanged.
+
+Continue source-only Pack 1. Fix the BOM scope rule: a selected project alone must not enable BOM UI or BOM queries for Finance, HR, Sales, Operations, or Facility/security; require the current authorized Hardware/R&D, Procurement or Production workspace. Keep existing RLS authoritative. Add regression coverage for excluded departments even when a project is selected. Then implement the missing department-lead template register/settings UI using the existing read contract and gated protected-action facade: scoped register, version/stage preview, clear acceptance-pending disabled mutation controls; no direct table writes, no service credentials in clients, no new live SQL, roles, migration, identities or publishing. Do not label gated controls as working actions. Report exact changed paths and tests.
+
+Show more
+Today at 4:23 AM
+Starting the scoped update
+
+I’ll tighten BOM visibility to the active authorized workspace and add the pending department-lead register without enabling any changes.
+
+Fixed BOM scope, added reg. UI
+Details
+Preview
+
+Implemented the source-only Pack 1 update.
+
+BOM scope: Finance, HR, Sales, Operations, Facility/security, unknown workspaces—and any selected project within them—now cannot show or query Project BOMs. Only active R&D, Procurement, or Production workspaces can.
+Lifecycle register: Added a scoped, read-only department-lead template register with template versions, stage previews, and explicitly acceptance-pending disabled protected controls. No direct writes or working mutation claims.
+Changed paths:
+src/lib/drive-presentation-policy.ts
+src/lib/drive-presentation-policy.test.ts
+src/components/drive/DriveBrowser.tsx
+src/lib/lifecycle-template-settings.ts
+src/lib/lifecycle-template-settings.test.ts
+src/routes/_authenticated/settings.lifecycle.tsx
+roadmap.md
+Validation: 11 focused tests passed; source check passed; latest preview build reports build OK.
+
+No database, roles, RLS, migrations, identities, or publishing changes were made.
+
+Compare template versions
+Filter the template register
+Code
+Ask Lovable...
+
+
+
+
+Build

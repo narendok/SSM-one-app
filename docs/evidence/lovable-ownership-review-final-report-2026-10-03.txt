@@ -1,0 +1,103 @@
+-visible department templates and stages. Draft/edit/clone/activate/retire controls remain explicitly disabled pending protected-action acceptance.
+
+Verified Drive category mapping
+Final category	Verified mapping	Status
+Common Controlled Documents	DEPARTMENT_STANDARDS root plus active drive_category_templates.placement = 'COMMON'	Mapped
+Periodic and Conditional Reviews	No authoritative existing folder or metadata mapping	Explicitly unmapped
+Project Deliverables	INTERNAL_PROJECTS or, if absent, CLIENT_PROJECTS; internal/client remains a secondary filter	Mapped
+
+The allowed department root kinds remain:
+
+DEPARTMENT_STANDARDS
+INTERNAL_PROJECTS
+CLIENT_PROJECTS
+
+Historical project folders such as Emulator are STANDARD nodes under an unmapped legacy project root, so they cannot satisfy the new department-scoped Android query until an authorized ownership/backfill decision is made.
+
+Continue the approved final framework with source-only implementation and reviewable repairs. Add an admin-only legacy Drive ownership review UI with a read-only dry-run: show actual project/Drive department ownership, descendant consistency, source node/revision gaps and affected counts. Explicit ownership must be selected by an authorized owner; do not infer it from titles. Do not apply backfills or writes until a verified auditable transaction and database acceptance exist. For Periodic and Conditional Reviews, prepare a concrete additive folder-kind/metadata/server-action proposal with migration source and rollback/preflight tests in source only; do not run live SQL, alter roles/RLS, publish, create users, or fabricate missing source revisions/workbooks. Export exact read contract/route and test/build evidence for Android parity. Preserve existing eight departments.
+
+Show more
+Today at 4:36 AM
+Thought for 3s
+
+I’ll add a review-only legacy ownership screen and an unapplied proposal with testable safeguards, without touching live records.
+
+Reviewing admin Drive patterns finished
+Done
+Reviewing admin Drive patterns
+39s
+
+The background task finished inspection but there is no implementation or validation report. Please now finish the requested source changes: admin-only ownership review screen with read-only preflight, and the unapplied periodic-review mapping/server-action proposal. Compile/typecheck, run meaningful focused tests, build, and export the exact read contract and route. Stop before any live SQL/backfill/permission changes or publishing. Return concrete changed paths and actual validation results; inspection alone is not completion.
+
+Show more
+Today at 4:41 AM
+Thought for 2s
+
+I’ll finish the source-only review screen and proposal, then verify it without touching live records or permissions.
+
+Added Pack 1 admin read route
+Done
+Review Drive implementation patterns
+1m 19s
+Details
+Preview
+
+Implemented source-only Pack 1 completion.
+
+New admin read-only route: /admin/drive-ownership — ownership dry-run, Drive descendant consistency, storage/revision gaps, affected counts; no backfill or writes.
+Unapplied proposal: supabase/pending/20261003_periodic_conditional_review_mapping.sql with preflight, scoped protected action design, metadata mapping, and rollback.
+Android/read reference: LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md; proposal and route exported in PERIODIC_REVIEW_MAPPING_PROPOSAL.md.
+Changed paths: new review component/route/helpers/tests, proposal SQL/docs, src/routes/_authenticated/admin.tsx, roadmap.md, AGENTS.md.
+Validation: 12 focused tests passed; TypeScript check passed; production build passed; current build log shows OK.
+
+No live SQL, ownership backfills, permission/role changes, records, or publishing occurred.
+
+Independent served-preview check found a routing defect: preview path is /admin/drive-ownership, but the main screen still renders System controls overview and its Legacy Drive review link. There is no ownership selector/preflight screen. Inspect the TanStack parent admin route and child outlet/index routing; repair source so /admin retains its overview while /admin/drive-ownership actually renders the guarded read-only review component. Add a meaningful route render regression, typecheck/test/build, and verify the actual route visually. No live SQL, backfill, roles/RLS or publishing.
+
+Show more
+Today at 4:48 AM
+Thought for 3s
+
+I’ll correct the nested admin routing and verify the actual guarded review page without changing any data or access controls.
+
+Fixed admin nested routing
+Details
+Preview
+
+Fixed the nested admin routing: /admin retains System controls, while /admin/drive-ownership now renders the guarded read-only ownership preflight; 6 tests, typecheck, build, and served-preview visual verification passed.
+
+The route now renders correctly in my served preview, but preflight displays 0 revision gaps for Emulator_V2.0, contrary to your read-only verification: FILE node 595f4467-e922-4f23-b614-ae127a3424da is not the ID; correct node is 595f4467-e922-4f23-b614-ae127a3424da? Please use the exact previously reported node 595f4467-e922-4f23-b614-ae127a3424da only if it exists; more reliably look up casing2-12032022.stl in project 31f21b91-46c4-4853-a573-a7890e41b605. Earlier report says it has no drive_node_revisions row and node_type FILE uppercase. Verify the exact row and fix counting of real FILE/FOLDER enum values, including normalization, missing source bytes and revisions. Also expose the actual BOM source node/revision gaps (BOM-2026-0002 had both null). Do not report zero as success when optional reads fail or are incomplete. Add real-case regressions, typecheck/build, no writes/SQL/access changes.
+
+Show more
+Today at 4:50 AM
+Finished thinking
+
+I’ll verify the exact Drive and BOM records, then strengthen the read-only preflight so incomplete reads and missing provenance are visible rather than reported as clean.
+
+Fixed preflight gap counting
+Details
+Preview
+
+Verified the STL node exists and has no revision; the preflight now flags all unrevisioned files, missing bytes, and BOM node/revision gaps. Eight regressions, typecheck, and build passed; no data or access changes were made.
+
+The served preflight now correctly shows Emulator 1 missing Drive revision plus 1 BOM node and 1 BOM revision gap; confirmed. One wording correction: rows say "0 source bytes". If the check only validates storage_bucket/storage_path metadata, rename that to "0 missing storage links" and state file bytes/storage access are not verified by this preflight. Use "1 missing revision" etc rather than implying byte sizes or successful file retrieval. Keep this a source-only label correction; no new SQL or reads of private credentials. Run the appropriate source/type/build check.
+
+Show more
+Today at 4:52 AM
+Updating the preflight wording
+
+I’ll correct the storage-link wording and keep the check strictly metadata-only.
+
+Updated preflight wording
+Details
+Previewing
+
+Updated the preflight to say “missing storage links” and clarify it verifies metadata only—not file bytes or storage access. Focused tests, type check, and build passed.
+
+Lock in preflight wording
+Ask Lovable...
+
+
+
+
+Build

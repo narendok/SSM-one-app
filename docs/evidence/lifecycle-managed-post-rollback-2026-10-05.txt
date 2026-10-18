@@ -1,0 +1,7 @@
+SQL query results
+result	test
+passed	temporary fault hooks removed
+passed	staged attempt remains unconsumed
+passed	request has no persisted receipt
+passed	actual staging object retained
+passed	no auth users created

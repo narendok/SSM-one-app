@@ -1,0 +1,167 @@
+- dialog "MASTER-2026-0001 · rev 1" [active]:
+        - heading "MASTER-2026-0001 · rev 1" [level=2]
+        - paragraph: OPPORTUNITY-2026-0013 · Proposed only — no committed project, release, or document generation.
+        - paragraph: Previewing documents from this exact saved opportunity and Master Specification revision.
+        - button "Back to proposal"
+        - generic: Structured document previews
+        - generic: "Read-only authorized source: OPPORTUNITY-2026-0013 · MASTER-2026-0001 rev 1."
+        - button "Refresh source":
+          - text: Refresh source
+        - paragraph: Pinned authorized source
+        - paragraph: "Opportunity: OPPORTUNITY-2026-0013"
+        - paragraph: "Customer: SAMPLE ONLY — OEM Tracker Portal Customer — 2026-10-03"
+        - paragraph:
+          - text: "Master Specification:"
+          - generic: MASTER-2026-0001 rev 1
+        - paragraph: "Revision ID: 4914fba5-43a0-4486-b62f-d775a9bb16b9"
+        - paragraph: Saved 10/6/2026, 12:07:27 AM · Initial SYNTHETIC or proposed intake Master Specification
+        - tablist:
+          - tab "Statement of Requirements" [selected]
+          - tab "Contract Review"
+          - tab "Product Requirements Specification"
+          - tab "NDA review"
+          - tab "Commercial quotation"
+          - tab "BOM review"
+          - tab "DFMEA"
+          - tab "Manufacturing Control Plan"
+          - tab "DVP&R"
+          - tab "PDI"
+          - tab "Commercial tax invoice"
+          - tab "Annual skill matrix"
+        - tabpanel "Statement of Requirements":
+          - paragraph: Source requirements are pinned; local scope and commercial review notes are deliberately unsaved.
+          - paragraph: Injected source fields · read-only
+          - table:
+            - rowgroup:
+              - row "Field Pinned value":
+                - columnheader "Field"
+                - columnheader "Pinned value"
+            - rowgroup:
+              - row "PROJECT_CODE OPPORTUNITY-2026-0013":
+                - cell "PROJECT_CODE"
+                - cell "OPPORTUNITY-2026-0013"
+              - row "PROJECT_NAME SYNTHETIC ONLY — Automotive Vehicle Tracker":
+                - cell "PROJECT_NAME"
+                - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+              - row "PROJECT_REVISION Master Specification rev 1":
+                - cell "PROJECT_REVISION"
+                - cell "Master Specification rev 1"
+              - row "CUSTOMER_NAME SAMPLE ONLY — OEM Tracker Portal Customer — 2026-10-03":
+                - cell "CUSTOMER_NAME"
+                - cell "SAMPLE ONLY — OEM Tracker Portal Customer — 2026-10-03"
+              - row "REQUIREMENT_SUMMARY SYNTHETIC ONLY vehicle tracker intake; no client notification, project conversion, or approval.":
+                - cell "REQUIREMENT_SUMMARY"
+                - cell "SYNTHETIC ONLY vehicle tracker intake; no client notification, project conversion, or approval."
+              - row "POWER_AND_UNITS 12/24V nominal input":
+                - cell "POWER_AND_UNITS"
+                - cell "12/24V nominal input"
+              - row "INTERFACES CAN requested":
+                - cell "INTERFACES"
+                - cell "CAN requested"
+              - row "CONNECTIVITY_AND_GNSS LTE/GNSS requested":
+                - cell "CONNECTIVITY_AND_GNSS"
+                - cell "LTE/GNSS requested"
+              - row "VOLUMES 20 pilot units":
+                - cell "VOLUMES"
+                - cell "20 pilot units"
+          - paragraph: Local review edits · unsaved · no approval is recorded
+          - group "OEM requirements":
+            - generic: OEM requirements
+            - text: OEM requirement rows
+            - textbox "OEM requirement rows":
+              - /placeholder: Requirement ID | requested outcome | source / note
+              - text: TBC
+          - group "Scope and acceptance":
+            - generic: Scope and acceptance
+            - text: Scope statement
+            - textbox "Scope statement": TBC
+            - text: Acceptance criteria
+            - textbox "Acceptance criteria": TBC
+          - group "Connectivity and telemetry":
+            - generic: Connectivity and telemetry
+            - text: CAN / telemetry review notes
+            - textbox "CAN / telemetry review notes": TBC
+          - group "Pilot and rollout":
+            - generic: Pilot and rollout
+            - text: Pilot and rollout notes
+            - textbox "Pilot and rollout notes": TBC
+          - group "Commercial review":
+            - generic: Commercial review
+            - text: SLA, warranty and delivery notes
+            - textbox "SLA, warranty and delivery notes": TBC
+          - paragraph: Formatted local preview
+          - paragraph: React-rendered text and tables only; source and local text are escaped and never executed.
+          - paragraph: Document structure
+          - table:
+            - rowgroup:
+              - row "Section / field Requested or local review content State":
+                - columnheader "Section / field"
+                - columnheader "Requested or local review content"
+                - columnheader "State"
+            - rowgroup:
+              - row "OEM requirement rows TBC Local draft / TBC":
+                - cell "OEM requirement rows"
+                - cell "TBC"
+                - cell "Local draft / TBC"
+              - row "CAN / telemetry CAN requested · LTE/GNSS requested · TBC Local draft / TBC":
+                - cell "CAN / telemetry"
+                - cell "CAN requested · LTE/GNSS requested · TBC"
+                - cell "Local draft / TBC"
+              - row "Pilot / rollout 20 pilot units · TBC Local draft / TBC":
+                - cell "Pilot / rollout"
+                - cell "20 pilot units · TBC"
+                - cell "Local draft / TBC"
+              - row "SLA / warranty / delivery TBC Local draft / TBC":
+                - cell "SLA / warranty / delivery"
+                - cell "TBC"
+                - cell "Local draft / TBC"
+          - paragraph: Every local editable field
+          - table:
+            - rowgroup:
+              - row "Section / field Requested or local review content State":
+                - columnheader "Section / field"
+                - columnheader "Requested or local review content"
+                - columnheader "State"
+            - rowgroup:
+              - row "OEM requirement rows TBC Unsaved local edit":
+                - cell "OEM requirement rows"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+              - row "Scope statement TBC Unsaved local edit":
+                - cell "Scope statement"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+              - row "Acceptance criteria TBC Unsaved local edit":
+                - cell "Acceptance criteria"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+              - row "CAN / telemetry review notes TBC Unsaved local edit":
+                - cell "CAN / telemetry review notes"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+              - row "Pilot and rollout notes TBC Unsaved local edit":
+                - cell "Pilot and rollout notes"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+              - row "SLA, warranty and delivery notes TBC Unsaved local edit":
+                - cell "SLA, warranty and delivery notes"
+                - cell "TBC"
+                - cell "Unsaved local edit"
+          - generic "Controlled text rendering"
+        - paragraph: Saving, export/release, and controlled document generation remain unavailable until the accepted backend contract is installed and independently verified.
+        - button "Save unavailable" [disabled]:
+          - text: Save unavailable
+        - button "Close":
+          - generic: Close
+    - status
+    - status
+    - status
+    - toolbar "Preview interactions":
+      - button "Select elements":
+      - button "Edit text inline":
+      - button "Draw annotation":
+      - button "Add a comment":
+      - button "Toolbar options":
+      - button "Minimize toolbar":
+- status
+- region

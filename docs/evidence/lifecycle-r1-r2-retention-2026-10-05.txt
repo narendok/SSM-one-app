@@ -1,0 +1,4 @@
+SQL query results
+a_source	b_document	c_file	d_revision	e_register	f_audit
+R1	LIFECYCLE-2026-0014	true	true	true	true
+R2	LIFECYCLE-2026-0015	true	true	true	true

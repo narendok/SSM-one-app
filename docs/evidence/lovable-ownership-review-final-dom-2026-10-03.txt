@@ -1,0 +1,676 @@
+- link "Skip to chat input":
+  - /url: "#chatinput"
+- banner "Sidebar":
+  - link "Dashboard":
+    - /url: /dashboard
+  - button "LanternGloveLily workspace menu":
+    - generic: L
+    - generic: LanternGloveLily
+  - navigation "Main menu":
+    - link "New":
+      - /url: /dashboard#new
+      - generic: New
+    - button "Search Ctrl K":
+      - generic: Search
+      - generic: Ctrl
+      - generic: K
+    - button "Connectors":
+      - generic: Connectors
+    - link "Chats":
+      - /url: /chats
+      - generic: Chats
+    - link "Projects":
+      - /url: /dashboard/projects
+      - generic: Projects
+    - link "Projects":
+      - /url: /dashboard/projects
+      - generic: Projects
+    - button "Collapse Recents" [expanded]:
+      - generic: Recents
+    - button "Filter recents":
+    - generic: SSM one phase 8
+    - link "SSM one phase 8":
+      - /url: /projects/d758dbf2-2f0e-44b3-b149-1ec51def58eb
+      - generic: SSM one phase 8
+    - button "Project actions":
+  - button "Share Lovable 100 credits per paid referral":
+    - paragraph: Share Lovable
+    - paragraph: 100 credits per paid referral
+  - button "Account menu":
+    - generic: H
+- main:
+  - navigation:
+    - button "Open sidebar":
+    - button "SSM one phase 8":
+      - paragraph: SSM one phase 8
+    - status
+    - button "Show history":
+    - button "Hide chat panel":
+    - tablist:
+      - generic: Preview
+      - generic: Files
+      - generic: Code
+      - generic: More
+      - tab "Preview" [selected]:
+        - generic: Preview
+      - tab "Files":
+        - generic: Files
+      - tab "Code":
+        - generic: Code
+      - tab "More":
+        - generic: More
+    - generic: /admin/drive-ownership
+    - generic: /.../drive-ownership
+    - generic: /...
+    - button "Desktop view":
+    - button "Refresh":
+    - button "/admin/drive-ownership — current page, switch pages":
+      - generic: /admin/drive-ownership
+    - link "Open in new tab":
+    - button "Share":
+      - generic: Share
+    - button "Publish, unpublished changes available":
+      - generic: Publish
+  - region "Chat":
+    - status: Response ready
+    - paragraph: Read-only data verification next; do not change backend records or schema. Android project Documents now filters drive_nodes by selected Hardware department_id and project_id. For Emulator_V2.0 TCU Test Jig it returned zero nodes/BOM associations, while web project tabs previously showed BOM_Emulator_V2.0 for procurement (BOM-2026-0002 Rev 2) and casing2-12032022.stl. Inspect the actual project.department_id, visible drive_nodes department_id/project_id, saved BOM project_id and file storage mapping for that project. Report exact IDs, the reason for any missing canonical Drive mapping, and a reviewable repair proposal. Do not infer department ownership or move historical records automatically. Also identify the actual web route to the new scoped lifecycle template register and the verified Drive folder-kind mapping for all three final categories.
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:26 AM
+    - button "Thought for 1s":
+      - generic: Thought for 1s
+    - paragraph: I’ll inspect the live read-only links for that project and compare them with the scoped Drive contract.
+    - button "Used 20 tools":
+      - generic: Used 20 tools
+    - heading "Read-only verification — 2026-10-02 UTC" [level=2]
+    - heading "Emulator_V2.0 TCU Test Jig" [level=3]
+    - list:
+      - strong: "Project ID:"
+      - code: 31f21b91-46c4-4853-a573-a7890e41b605
+      - strong: "Project name:"
+      - code: Emulator_V2.0 TCU Test Jig
+      - strong: "Project status:"
+      - code: active
+      - strong:
+        - code: projects.department_id
+        - text: ":"
+      - code: "NULL"
+      - strong: "Project Drive root:"
+      - code: f8d74c27-aaad-45ff-861e-aad132105ba4
+      - strong: "Root name:"
+      - code: EMULATOR-V20_Emulator_V2.0 TCU Test Jig
+      - strong:
+        - text: Root
+        - code: department_id
+        - text: ":"
+      - code: "NULL"
+    - paragraph: "This is a legacy promoted/sample project. A Hardware-scoped Android query requiring both:"
+    - generic: Text
+    - button "Word wrap":
+    - button "Copy code":
+    - status
+    - status
+    - group "Code":
+      - code: drive_nodes.department_id = Hardware department ID drive_nodes.project_id = Emulator project ID
+    - paragraph:
+      - text: correctly returns zero records because the project and all of its current Drive nodes have
+      - code: department_id = NULL
+      - text: . No department ownership was inferred or changed.
+    - heading "Visible Drive data" [level=3]
+    - list:
+      - strong: "Drive nodes for the project:"
+      - text: "30"
+      - strong:
+        - text: All have
+        - code: folder_kind = STANDARD
+      - strong:
+        - text: All have
+        - code: department_id = NULL
+      - strong:
+        - text: "No"
+        - code: DEPARTMENT_STANDARDS
+        - text: ","
+        - code: INTERNAL_PROJECTS
+        - text: ", or"
+        - code: CLIENT_PROJECTS
+        - text: node is attached to this project.
+    - paragraph: "The known file is present:"
+    - list:
+      - strong: "File node ID:"
+      - code: 595f4467-e922-4f23-b614-ae127a3424da
+      - strong: "Filename:"
+      - code: casing2-12032022.stl
+      - strong: "Node type:"
+      - code: FILE
+      - strong: "Folder kind:"
+      - code: STANDARD
+      - strong: "Project ID:"
+      - code: 31f21b91-46c4-4853-a573-a7890e41b605
+      - strong: "Department ID:"
+      - code: "NULL"
+      - strong: "Parent folder ID:"
+      - code: 836564c5-2b54-4c3c-9187-0850263f4179
+      - strong: "Storage path:"
+      - code: 31f21b91-46c4-4853-a573-a7890e41b605/53a3be2f-983e-4ab3-a71d-d3040037b7f1-casing2-12032022.stl
+    - paragraph:
+      - text: There is
+      - strong: "no"
+      - code: drive_node_revisions
+      - text: row for that STL node, so it currently has a file storage mapping on
+      - code: drive_nodes.storage_path
+      - text: ", but no revision-history record."
+    - heading "Saved BOM association" [level=3]
+    - paragraph: "The BOM exists as a saved project BOM, independently of Drive:"
+    - list:
+      - strong: "BOM ID:"
+      - code: 4fabe830-793e-48e6-828e-450d08a7eb85
+      - strong: "BOM number:"
+      - code: BOM-2026-0002
+      - strong: "Revision:"
+      - code: "2"
+      - strong: "Name:"
+      - code: BOM_Emulator_V2.0 for procurement
+      - strong: "Project ID:"
+      - code: 31f21b91-46c4-4853-a573-a7890e41b605
+      - strong: "Source filename:"
+      - code: BOM_Emulator_V2.0 for procurement.xlsx
+      - strong: "Lines:"
+      - code: "52"
+      - strong:
+        - code: source_drive_node_id
+        - text: ":"
+      - code: "NULL"
+      - strong:
+        - code: source_drive_revision_id
+        - text: ":"
+      - code: "NULL"
+    - paragraph:
+      - text: "Therefore the prior web project-tab result is expected: it reads"
+      - code: project_boms.project_id
+      - text: ", not a canonical Drive association. The BOM spreadsheet itself has no registered Drive node or revision mapping."
+    - heading "Why Android returns no documents or BOM associations" [level=3]
+    - list:
+      - text: "The project is not owned by any department:"
+      - code: projects.department_id IS NULL
+      - text: .
+      - text: "Its project root, descendant folders, STL file, and other Drive nodes are also unmapped:"
+      - code: drive_nodes.department_id IS NULL
+      - text: .
+      - text: The BOM is connected to the project, but its optional
+      - code: source_drive_node_id
+      - text: and
+      - code: source_drive_revision_id
+      - text: are both
+      - code: "NULL"
+      - text: .
+      - text: Hardware’s department ID is
+      - code: 8b8a397c-775e-4054-a4ee-857b8639a53c
+      - text: ; no verified record links this project or its Drive tree to that department.
+    - heading "Reviewable repair proposal — not applied" [level=3]
+    - list:
+      - strong: Obtain an authoritative owner decision
+      - text: for the legacy project; do not derive Hardware ownership from its title, BOM, file type, or former UI visibility.
+      - text: "After approval, use a governed backfill transaction that:"
+      - list:
+        - text: assigns the approved
+        - code: projects.department_id
+        - text: ;
+        - listitem: assigns the same department only to the verified project Drive root and its descendants;
+        - listitem: validates every affected node already belongs to that project;
+        - listitem: records an auditable legacy-mapping reason and actor;
+        - text: leaves unrelated legacy
+        - code: "NULL"
+        - text: records unchanged.
+      - listitem: Register the existing BOM workbook as a governed Drive file only if the actual workbook and approved provenance can be supplied. Then create the linked revision and populate the BOM’s source node/revision fields through the established protected workflow.
+      - listitem: Re-run Android reads using the approved department plus project scope, then verify that the Drive list, file preview, and BOM source link agree.
+    - paragraph: No records, ownership, storage, links, or schema were changed.
+    - heading "Lifecycle template register route" [level=2]
+    - paragraph: "The new scoped read-only register is at:"
+    - generic: Text
+    - button "Word wrap":
+    - button "Copy code":
+    - status
+    - status
+    - group "Code":
+      - code: /settings/lifecycle
+    - paragraph: "Its internal route ID is:"
+    - generic: Text
+    - button "Word wrap":
+    - button "Copy code":
+    - status
+    - status
+    - group "Code":
+      - code: /_authenticated/settings/lifecycle
+    - paragraph: It reads RLS-visible department templates and stages. Draft/edit/clone/activate/retire controls remain explicitly disabled pending protected-action acceptance.
+    - heading "Verified Drive category mapping" [level=2]
+    - table:
+      - rowgroup:
+        - row "Final category Verified mapping Status":
+          - columnheader "Final category"
+          - columnheader "Verified mapping"
+          - columnheader "Status"
+      - rowgroup:
+        - row "Common Controlled Documents DEPARTMENT_STANDARDS root plus active drive_category_templates.placement = 'COMMON' Mapped":
+          - cell "Common Controlled Documents":
+            - strong: Common Controlled Documents
+          - cell "DEPARTMENT_STANDARDS root plus active drive_category_templates.placement = 'COMMON'":
+            - code: DEPARTMENT_STANDARDS
+            - text: root plus active
+            - code: drive_category_templates.placement = 'COMMON'
+          - cell "Mapped"
+        - row "Periodic and Conditional Reviews No authoritative existing folder or metadata mapping Explicitly unmapped":
+          - cell "Periodic and Conditional Reviews":
+            - strong: Periodic and Conditional Reviews
+          - cell "No authoritative existing folder or metadata mapping"
+          - cell "Explicitly unmapped"
+        - row "Project Deliverables INTERNAL_PROJECTS or, if absent, CLIENT_PROJECTS; internal/client remains a secondary filter Mapped":
+          - cell "Project Deliverables":
+            - strong: Project Deliverables
+          - cell "INTERNAL_PROJECTS or, if absent, CLIENT_PROJECTS; internal/client remains a secondary filter":
+            - code: INTERNAL_PROJECTS
+            - text: or, if absent,
+            - code: CLIENT_PROJECTS
+            - text: ; internal/client remains a secondary filter
+          - cell "Mapped"
+    - paragraph: "The allowed department root kinds remain:"
+    - generic: Text
+    - button "Word wrap":
+    - button "Copy code":
+    - status
+    - status
+    - group "Code":
+      - code: DEPARTMENT_STANDARDS INTERNAL_PROJECTS CLIENT_PROJECTS
+    - paragraph:
+      - text: Historical project folders such as Emulator are
+      - code: STANDARD
+      - text: nodes under an unmapped legacy project root, so they cannot satisfy the new department-scoped Android query until an authorized ownership/backfill decision is made.
+    - button "Revert to this version":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - paragraph: "Continue the approved final framework with source-only implementation and reviewable repairs. Add an admin-only legacy Drive ownership review UI with a read-only dry-run: show actual project/Drive department ownership, descendant consistency, source node/revision gaps and affected counts. Explicit ownership must be selected by an authorized owner; do not infer it from titles. Do not apply backfills or writes until a verified auditable transaction and database acceptance exist. For Periodic and Conditional Reviews, prepare a concrete additive folder-kind/metadata/server-action proposal with migration source and rollback/preflight tests in source only; do not run live SQL, alter roles/RLS, publish, create users, or fabricate missing source revisions/workbooks. Export exact read contract/route and test/build evidence for Android parity. Preserve existing eight departments."
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:36 AM
+    - button "Thought for 3s":
+      - generic: Thought for 3s
+    - paragraph: I’ll add a review-only legacy ownership screen and an unapplied proposal with testable safeguards, without touching live records.
+    - button "Reviewing admin Drive patterns finished":
+      - generic: Reviewing admin Drive patterns finished
+    - 'button "Open background task: Reviewing admin Drive patterns"':
+      - generic: Done
+      - generic: Reviewing admin Drive patterns
+      - generic "Worked for 39s":
+        - generic: 39s
+    - button "Revert to this version":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - paragraph: "The background task finished inspection but there is no implementation or validation report. Please now finish the requested source changes: admin-only ownership review screen with read-only preflight, and the unapplied periodic-review mapping/server-action proposal. Compile/typecheck, run meaningful focused tests, build, and export the exact read contract and route. Stop before any live SQL/backfill/permission changes or publishing. Return concrete changed paths and actual validation results; inspection alone is not completion."
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:41 AM
+    - button "Thought for 2s":
+      - generic: Thought for 2s
+    - paragraph: I’ll finish the source-only review screen and proposal, then verify it without touching live records or permissions.
+    - generic: Added Pack 1 admin read route
+    - button "Bookmark in history":
+    - 'button "Open background task: Review Drive implementation patterns"':
+      - generic: Done
+      - generic: Review Drive implementation patterns
+      - generic "Worked for 1m 19s":
+        - generic: 1m 19s
+    - button "Details":
+      - generic: Details
+    - button "Preview":
+      - generic: Preview
+    - paragraph: Implemented source-only Pack 1 completion.
+    - list:
+      - strong: "New admin read-only route:"
+      - code: /admin/drive-ownership
+      - text: — ownership dry-run, Drive descendant consistency, storage/revision gaps, affected counts; no backfill or writes.
+      - strong: "Unapplied proposal:"
+      - code: supabase/pending/20261003_periodic_conditional_review_mapping.sql
+      - text: with preflight, scoped protected action design, metadata mapping, and rollback.
+      - strong: "Android/read reference:"
+      - code: LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md
+      - text: ; proposal and route exported in
+      - code: PERIODIC_REVIEW_MAPPING_PROPOSAL.md
+      - text: .
+      - strong: "Changed paths:"
+      - text: new review component/route/helpers/tests, proposal SQL/docs,
+      - code: src/routes/_authenticated/admin.tsx
+      - text: ","
+      - code: roadmap.md
+      - text: ","
+      - code: AGENTS.md
+      - text: .
+      - strong: "Validation:"
+      - text: 12 focused tests passed; TypeScript check passed; production build passed; current build log shows OK.
+    - paragraph: No live SQL, ownership backfills, permission/role changes, records, or publishing occurred.
+    - button "Revert to this version":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - paragraph: "Independent served-preview check found a routing defect: preview path is /admin/drive-ownership, but the main screen still renders System controls overview and its Legacy Drive review link. There is no ownership selector/preflight screen. Inspect the TanStack parent admin route and child outlet/index routing; repair source so /admin retains its overview while /admin/drive-ownership actually renders the guarded read-only review component. Add a meaningful route render regression, typecheck/test/build, and verify the actual route visually. No live SQL, backfill, roles/RLS or publishing."
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:48 AM
+    - button "Thought for 3s":
+      - generic: Thought for 3s
+    - paragraph: I’ll correct the nested admin routing and verify the actual guarded review page without changing any data or access controls.
+    - generic: Fixed admin nested routing
+    - button "Bookmark in history":
+    - button "Details":
+      - generic: Details
+    - button "Preview":
+      - generic: Preview
+    - paragraph:
+      - text: "Fixed the nested admin routing:"
+      - code: /admin
+      - text: retains System controls, while
+      - code: /admin/drive-ownership
+      - text: now renders the guarded read-only ownership preflight; 6 tests, typecheck, build, and served-preview visual verification passed.
+    - button "Revert to this version":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - paragraph: "The route now renders correctly in my served preview, but preflight displays 0 revision gaps for Emulator_V2.0, contrary to your read-only verification: FILE node 595f4467-e922-4f23-b614-ae127a3424da is not the ID; correct node is 595f4467-e922-4f23-b614-ae127a3424da? Please use the exact previously reported node 595f4467-e922-4f23-b614-ae127a3424da only if it exists; more reliably look up casing2-12032022.stl in project 31f21b91-46c4-4853-a573-a7890e41b605. Earlier report says it has no drive_node_revisions row and node_type FILE uppercase. Verify the exact row and fix counting of real FILE/FOLDER enum values, including normalization, missing source bytes and revisions. Also expose the actual BOM source node/revision gaps (BOM-2026-0002 had both null). Do not report zero as success when optional reads fail or are incomplete. Add real-case regressions, typecheck/build, no writes/SQL/access changes."
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:50 AM
+    - button "Finished thinking":
+      - generic: Finished thinking
+    - paragraph: I’ll verify the exact Drive and BOM records, then strengthen the read-only preflight so incomplete reads and missing provenance are visible rather than reported as clean.
+    - generic: Fixed preflight gap counting
+    - button "Bookmark in history":
+    - button "Details":
+      - generic: Details
+    - button "Preview":
+      - generic: Preview
+    - paragraph: Verified the STL node exists and has no revision; the preflight now flags all unrevisioned files, missing bytes, and BOM node/revision gaps. Eight regressions, typecheck, and build passed; no data or access changes were made.
+    - button "Revert to this version":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - paragraph: "The served preflight now correctly shows Emulator 1 missing Drive revision plus 1 BOM node and 1 BOM revision gap; confirmed. One wording correction: rows say \"0 source bytes\". If the check only validates storage_bucket/storage_path metadata, rename that to \"0 missing storage links\" and state file bytes/storage access are not verified by this preflight. Use \"1 missing revision\" etc rather than implying byte sizes or successful file retrieval. Keep this a source-only label correction; no new SQL or reads of private credentials. Run the appropriate source/type/build check."
+    - button "Show more":
+      - generic: Show more
+    - button "Copy message":
+    - status
+    - status
+    - button "Copy message link":
+    - status
+    - button "Edit message":
+    - generic: Today at 4:52 AM
+    - button "Updating the preflight wording":
+      - generic: Updating the preflight wording
+    - paragraph: I’ll correct the storage-link wording and keep the check strictly metadata-only.
+    - generic: Updated preflight wording
+    - button "Bookmark in history":
+    - button "Details":
+      - generic: Details
+    - button "Previewing" [disabled] [pressed]:
+      - generic: Previewing
+    - paragraph:
+      - text: Updated the preflight to say
+      - strong: “missing storage links”
+      - text: and clarify it verifies metadata only—not file bytes or storage access. Focused tests, type check, and build passed.
+    - button "Undo latest edit":
+    - button "Helpful":
+    - button "Not helpful":
+    - button "Copy message":
+    - status
+    - status
+    - button "More options":
+    - button "Lock in preflight wording":
+      - generic: Lock in preflight wording
+    - generic: Ask Lovable...
+    - textbox "Ask Lovable..." [active]:
+      - paragraph
+    - status
+    - button "Chat actions":
+    - button "Build":
+      - generic: Build
+    - button "Transcribe":
+    - button "Send message" [disabled]:
+  - separator
+  - region "Preview":
+    - iframe [id="live-preview-panel"] [name="live-preview-panel"]:
+      - link "SSM One":
+        - /url: /
+        - generic: SSM One
+      - generic: Daily work
+      - list:
+        - link "My day":
+          - /url: /command-center
+          - generic: My day
+        - link "Department workspace":
+          - /url: /dashboards
+          - generic: Department workspace
+      - generic: Facility / Maintenance work
+      - list:
+        - link "Facilities":
+          - /url: /facility
+          - generic: Facilities
+        - link "Assets":
+          - /url: /assets
+          - generic: Assets
+        - link "Maintenance":
+          - /url: /maintenance
+          - generic: Maintenance
+        - link "Security desk":
+          - /url: /security
+          - generic: Security desk
+        - link "Workplace":
+          - /url: /workplace
+          - generic: Workplace
+        - link "Facility documents":
+          - /url: /drive?department=4c58bfd0-7d4b-4916-bb05-4801d556e3d3
+          - generic: Facility documents
+      - list:
+        - link "System":
+          - /url: /dashboards
+          - generic: System
+        - button "Toggle System menu" [expanded]:
+      - list:
+        - list:
+          - link "PartsBench history":
+            - /url: /history
+            - generic: PartsBench history
+          - link "System controls":
+            - /url: /admin
+            - generic: System controls
+      - main:
+        - button "Toggle Sidebar":
+          - generic: Toggle Sidebar
+        - button "Search workspace Ctrl K":
+          - text: Search workspace
+          - generic: Ctrl K
+        - 'button "Department workspace: Facility / Maintenance"':
+        - button "Notifications":
+        - generic: System Administrator
+        - generic: Platform Owner
+        - link "System controls":
+          - /url: /admin
+        - button "Sign out":
+        - main:
+          - heading "Legacy Drive ownership review" [level=1]
+          - paragraph: Read-only preflight for legacy project folders. It reports RLS-visible facts only and never assigns, moves, repairs, or creates records.
+          - paragraph: Backfill is not enabled
+          - paragraph: An authorized Platform Owner must explicitly choose an owning department for a future reviewed transaction. This selection is a dry-run only; names, titles, BOMs, and descendants are never used to infer ownership.
+          - generic: Proposed owner for dry-run
+          - combobox "Proposed owning department":
+            - option "Choose explicitly — no selection" [selected]
+            - option "Facility, Maintenance, Security, Utilities & Assets"
+            - option "Finance"
+            - option "Hardware & R&D"
+            - option "Human Resources"
+            - option "Operations & QMS"
+            - option "Procurement, Stores & Incoming Quality"
+            - option "Production & Calibration"
+            - option "Sales"
+          - button "Refresh preflight"
+          - paragraph: "8"
+          - paragraph: Affected projects
+          - paragraph: "8"
+          - paragraph: Unmapped projects
+          - paragraph: "0"
+          - paragraph: File source gaps
+          - paragraph: "9"
+          - paragraph: Drive revision gaps
+          - paragraph: "2"
+          - paragraph: BOM source-node gaps
+          - paragraph: "2"
+          - paragraph: BOM revision gaps
+          - paragraph: Project preflight
+          - paragraph: Snapshot read 10/3/2026, 4:53:50 AM. Any unreadable source makes the preflight fail rather than reporting a clean count. Storage-link checks validate Drive metadata only; file bytes and storage access are not verified.
+          - table:
+            - rowgroup:
+              - row "Project Current owner Drive nodes Consistency File provenance BOM provenance":
+                - columnheader "Project"
+                - columnheader "Current owner"
+                - columnheader "Drive nodes"
+                - columnheader "Consistency"
+                - columnheader "File provenance"
+                - columnheader "BOM provenance"
+            - rowgroup:
+              - row "ASDL-V10 · ASDL_V1.0 Differential Lock 6a5304b9-3152-41da-82ab-861d03eab825 Unmapped — explicit decision required 29 0 mismatch · 29 missing · root found 0 missing storage links · 0 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "ASDL-V10 · ASDL_V1.0 Differential Lock 6a5304b9-3152-41da-82ab-861d03eab825":
+                  - paragraph: ASDL-V10 · ASDL_V1.0 Differential Lock
+                  - paragraph: 6a5304b9-3152-41da-82ab-861d03eab825
+                - cell "Unmapped — explicit decision required"
+                - cell "29"
+                - cell "0 mismatch · 29 missing · root found"
+                - cell "0 missing storage links · 0 missing revisions":
+                  - text: 0 missing storage links · 0 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+              - row "AUTOCATH-V10 · Auto-Cath_V1.0 Device Interface 49d7f81e-5f50-4272-a00a-7e03b984e562 Unmapped — explicit decision required 29 0 mismatch · 29 missing · root found 0 missing storage links · 0 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "AUTOCATH-V10 · Auto-Cath_V1.0 Device Interface 49d7f81e-5f50-4272-a00a-7e03b984e562":
+                  - paragraph: AUTOCATH-V10 · Auto-Cath_V1.0 Device Interface
+                  - paragraph: 49d7f81e-5f50-4272-a00a-7e03b984e562
+                - cell "Unmapped — explicit decision required"
+                - cell "29"
+                - cell "0 mismatch · 29 missing · root found"
+                - cell "0 missing storage links · 0 missing revisions":
+                  - text: 0 missing storage links · 0 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+              - row "BCUE-V21 · BCU_E_V2.1 International 99697d37-8a7e-4434-a9cc-296ffbca713c Unmapped — explicit decision required 29 0 mismatch · 29 missing · root found 0 missing storage links · 0 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "BCUE-V21 · BCU_E_V2.1 International 99697d37-8a7e-4434-a9cc-296ffbca713c":
+                  - paragraph: BCUE-V21 · BCU_E_V2.1 International
+                  - paragraph: 99697d37-8a7e-4434-a9cc-296ffbca713c
+                - cell "Unmapped — explicit decision required"
+                - cell "29"
+                - cell "0 mismatch · 29 missing · root found"
+                - cell "0 missing storage links · 0 missing revisions":
+                  - text: 0 missing storage links · 0 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+              - row "BCUS-V20 · BCU_S_V2.0 Farm Smart Controller 2b7ddf86-c621-404f-a1ce-bffcd0e4ebe5 Unmapped — explicit decision required 47 0 mismatch · 47 missing · root found 0 missing storage links · 6 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "BCUS-V20 · BCU_S_V2.0 Farm Smart Controller 2b7ddf86-c621-404f-a1ce-bffcd0e4ebe5":
+                  - paragraph: BCUS-V20 · BCU_S_V2.0 Farm Smart Controller
+                  - paragraph: 2b7ddf86-c621-404f-a1ce-bffcd0e4ebe5
+                - cell "Unmapped — explicit decision required"
+                - cell "47"
+                - cell "0 mismatch · 47 missing · root found"
+                - cell "0 missing storage links · 6 missing revisions":
+                  - text: 0 missing storage links · 6 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+              - row "EMULATOR-V20 · Emulator_V2.0 TCU Test Jig 31f21b91-46c4-4853-a573-a7890e41b605 Unmapped — explicit decision required 30 0 mismatch · 30 missing · root found 0 missing storage links · 1 missing revision 1 missing node · 1 missing revision":
+                - cell "EMULATOR-V20 · Emulator_V2.0 TCU Test Jig 31f21b91-46c4-4853-a573-a7890e41b605":
+                  - paragraph: EMULATOR-V20 · Emulator_V2.0 TCU Test Jig
+                  - paragraph: 31f21b91-46c4-4853-a573-a7890e41b605
+                - cell "Unmapped — explicit decision required"
+                - cell "30"
+                - cell "0 mismatch · 30 missing · root found"
+                - cell "0 missing storage links · 1 missing revision":
+                  - text: 0 missing storage links · 1 missing revision
+                - cell "1 missing node · 1 missing revision"
+              - row "LFP-V20 · LFP_V2.0 LoRa Fleet Pro a527af8f-03ca-4b5b-b767-2b1ea01b30fa Unmapped — explicit decision required 29 0 mismatch · 29 missing · root found 0 missing storage links · 0 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "LFP-V20 · LFP_V2.0 LoRa Fleet Pro a527af8f-03ca-4b5b-b767-2b1ea01b30fa":
+                  - paragraph: LFP-V20 · LFP_V2.0 LoRa Fleet Pro
+                  - paragraph: a527af8f-03ca-4b5b-b767-2b1ea01b30fa
+                - cell "Unmapped — explicit decision required"
+                - cell "29"
+                - cell "0 mismatch · 29 missing · root found"
+                - cell "0 missing storage links · 0 missing revisions":
+                  - text: 0 missing storage links · 0 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+              - row "PROJECT-2026-0001 · imm 23866bb8-fb50-4cab-9812-de4f54fe0357 Unmapped — explicit decision required 29 0 mismatch · 29 missing · root found 0 missing storage links · 0 missing revisions 1 missing node · 1 missing revision":
+                - cell "PROJECT-2026-0001 · imm 23866bb8-fb50-4cab-9812-de4f54fe0357":
+                  - paragraph: PROJECT-2026-0001 · imm
+                  - paragraph: 23866bb8-fb50-4cab-9812-de4f54fe0357
+                - cell "Unmapped — explicit decision required"
+                - cell "29"
+                - cell "0 mismatch · 29 missing · root found"
+                - cell "0 missing storage links · 0 missing revisions":
+                  - text: 0 missing storage links · 0 missing revisions
+                - cell "1 missing node · 1 missing revision"
+              - row "PROJECT-2026-0002 · fcu 40d7dd11-d16c-4bb4-8f1f-0ce82d757974 Unmapped — explicit decision required 31 0 mismatch · 31 missing · root found 0 missing storage links · 2 missing revisions 0 missing nodes · 0 missing revisions":
+                - cell "PROJECT-2026-0002 · fcu 40d7dd11-d16c-4bb4-8f1f-0ce82d757974":
+                  - paragraph: PROJECT-2026-0002 · fcu
+                  - paragraph: 40d7dd11-d16c-4bb4-8f1f-0ce82d757974
+                - cell "Unmapped — explicit decision required"
+                - cell "31"
+                - cell "0 mismatch · 31 missing · root found"
+                - cell "0 missing storage links · 2 missing revisions":
+                  - text: 0 missing storage links · 2 missing revisions
+                - cell "0 missing nodes · 0 missing revisions"
+      - button "Open voice assistant":
+      - region "Notifications alt+T"
+    - status
+    - status
+    - status
+    - toolbar "Preview interactions":
+      - button "Select elements":
+      - button "Edit text inline":
+      - button "Draw annotation":
+      - button "Add a comment":
+      - button "Toolbar options":
+      - button "Minimize toolbar":
+- status
+- region

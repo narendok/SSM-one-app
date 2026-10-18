@@ -1,0 +1,10 @@
+SQL query results
+point	result
+drive_nodes	passed: rows, numbering and attempt restored
+drive_node_revisions	passed: rows, numbering and attempt restored
+document_control_events	passed: rows, numbering and attempt restored
+document_control_registers	passed: rows, numbering and attempt restored
+activity_log	passed: rows, numbering and attempt restored
+project_lifecycle_document_drafts	passed: rows, numbering and attempt restored
+lifecycle_document_storage_attempts	passed: rows, numbering and attempt restored
+owned unreferenced staging proof	passed

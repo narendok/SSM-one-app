@@ -1,0 +1,29 @@
+# Managed Sales activation — 2026-10-11
+
+Target: original Lovable project d758dbf2-2f0e-44b3-b149-1ec51def58eb, managed backend yyrvduosyyaluifqvwkr. Executed through its Cloud SQL editor, without historical migration replay or journal writes.
+
+Phase A committed after correcting three unqualified digest calls to extensions.digest. Backend default ACLs unexpectedly granted authenticated EXECUTE; explicitly revoked authenticated access on all thirteen new functions before activation. Verified thirteen functions, zero authenticated/anonymous execution permissions at that checkpoint, and ten tables.
+
+Restored the resolver's department authorization check, which source had disabled with IF false. Verified enabled department check and disabled caller access. Corrected the Save wrapper's case-sensitive folder comparison to lower(node_type); existing managed folders use FOLDER. No folder records were changed.
+
+Installed one shared private/document location binding dd31a29a-dba3-49ad-abf0-349fcab64280 for existing OPPORTUNITY-2026-0013, customer 03e06115-a7d4-4965-9e92-9c37462f5ddc, locked Sales root 0c3e85df-f901-4bb9-9ea7-ee2072658faa and child 020dcca5-7809-4287-88cd-537d837a3eee. Private project-drive bucket verified public=false; prefix sales/opportunity/a6c62c81-1cc2-4804-b1c5-c004c6730b52/. Existing eligible actor e96e4ec3-b3da-4437-aa5f-b5d0b4469d30 verified sales.manage and department access. Binding recorded this actor as verifier/authorizer under the human-approved operation; SQL editor execution was postgres, not that actor's authenticated transport.
+
+Operator rollback acceptance simulated actor claims: save/replay returned same revision and draft, one request-scoped audit. Scoped helper allowed the owned exact upload path and rejected wrong path, DELETE, and anonymous identity. Verified zero drafts, receipts and audits after rollback, one binding in each location table. This is not genuine caller authentication or full storage/browser acceptance.
+
+Original Phase D storage policy directly queried document_locations, which remains private without authenticated SELECT. Repaired with fixed-search-path security-definer boolean helper can_access_sales_structured_draft_object(text,text,text): checks sales.manage, current department access, active binding, exact owned receipt plus linked revision for INSERT, owned materialization for SELECT; no Sales UPDATE/DELETE.
+
+User explicitly approved repaired Phase D SQL and storage-policy/function-access changes. Transaction succeeded. Verified six authenticated callable functions, zero anonymous callable functions, and two Sales storage policies. See sales-phase-d-active-20261011.jpg.
+
+Executed repaired activation artifact SHA256: aa7d2cb718259b6c6464c0a8f65f5df60fae0025261d5d874419a9c3057431d4. It differs from the historical approved package and must not be overwritten by that package.
+
+Subsequent source UI wiring generated, with Lovable reporting typecheck, build and 36 focused tests passed. Discovery source initially used wrong object-helper argument order and depended on a pre-existing materialization, making first Save impossible. Repaired discovery joins the shared active private/document location and trusted resolver, validating exact source pins and current department access. Operator rollback proved first-save discovery with no materializations, invalid source rejection and anonymous rejection. User explicitly approved deployment of repaired discovery RPC plus authenticated grant; deployment succeeded and authenticated=true/anon=false verified.
+
+Real signed-in admin browser Save succeeded for the existing pinned opportunity/Master revision. Materialization 7712f041-53c6-4c7a-9438-06e4b39fb9a9, request 27e6d3fe-c29b-46c7-a360-4aab199c16cd, actor e96e4ec3-b3da-4437-aa5f-b5d0b4469d30. Stored 2683-byte HTML checksum b3cd74203ab576f8e328069b64b28d044c79d35b67e21e4798c8b3478caaa5df at the approved prefix plus request-draft.html. Managed read-only inspection verified storage object, correct Drive parent folder, Drive revision and document-control register. Unchanged second Save retained exactly one revision, receipt, audit, materialization and storage object.
+
+Follow-up repairs: initial saved-state recovery source did not hydrate fields. A subsequent decoder incorrectly expected {kind,fields}, while the installed canonical_payload contract stores a flat field object. Corrected decoder in HEAD 4abdccfb7f58fae64a6cdfd8f1cc1a1eb3524a51. Lovable reports focused Vitest 24/24, typecheck, build and diff check exit 0. Root refreshed the preview, reopened the same source and verified form/preview show Persisted unissued revision 1. No new Save/revision was created. One footer still claimed unsaved; requested a final text-consistency repair.
+
+Preview refresh now returns to authenticated Sales within the bounded loading check. Top Download is enabled. Root clicked the existing revision's private download and observed persistent status: Revision 1 passed checksum verification and the browser download was started. This verifies authorized blob retrieval/checksum and browser download initiation; delivery to disk was not independently verified (earlier browser download event wait timed out).
+
+Final wording repair: Lovable reports 36 focused tests, type validation and build exit 0. Root refreshed the actual preview and reopened the same existing source; footer now says Persisted unissued revision 1 is based on OPPORTUNITY-2026-0013 / MASTER-2026-0001 rev 1, with no approval, issuance or release recorded. History still contains the one existing revision and Download is enabled. Evidence: sales-final-persisted-status-20261011.jpg.
+
+Genuine restricted-role acceptance remains pending; admin Save success does not complete it. Broader lifecycle work remains incomplete. No Publish or production users created.

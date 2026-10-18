@@ -1,0 +1,12 @@
+BEGIN;
+DO $binding$
+DECLARE v_id uuid := gen_random_uuid(); v_actor uuid := 'e96e4ec3-b3da-4437-aa5f-b5d0b4469d30';
+BEGIN
+ IF NOT EXISTS(SELECT 1 FROM storage.buckets WHERE id='project-drive' AND NOT public) THEN RAISE EXCEPTION 'Private bucket verification failed'; END IF;
+ IF NOT public.has_permission(v_actor,'sales.manage') OR NOT public.can_access_department_drive(v_actor,'db21a9b2-2cd4-4891-9151-064bef8a7cb4',NULL) THEN RAISE EXCEPTION 'Sales actor access verification failed'; END IF;
+ IF NOT EXISTS(SELECT 1 FROM public.drive_nodes t JOIN public.drive_nodes r ON r.id=t.parent_id WHERE t.id='020dcca5-7809-4287-88cd-537d837a3eee' AND r.id='0c3e85df-f901-4bb9-9ea7-ee2072658faa' AND t.department_id='db21a9b2-2cd4-4891-9151-064bef8a7cb4' AND r.department_id=t.department_id AND lower(t.node_type)='folder' AND lower(r.node_type)='folder' AND t.is_locked AND r.is_locked AND NOT t.is_trashed AND NOT r.is_trashed AND t.project_id IS NULL AND r.project_id IS NULL AND t.storage_bucket IS NULL AND t.storage_path IS NULL) THEN RAISE EXCEPTION 'Exact Sales folder verification failed'; END IF;
+ IF EXISTS(SELECT 1 FROM public.sales_opportunity_document_locations WHERE opportunity_id='a6c62c81-1cc2-4804-b1c5-c004c6730b52') OR EXISTS(SELECT 1 FROM public.sales_opportunity_structured_draft_private_locations WHERE drive_folder_node_id='020dcca5-7809-4287-88cd-537d837a3eee') THEN RAISE EXCEPTION 'Existing binding requires inspection; refusing duplicate'; END IF;
+ INSERT INTO public.sales_opportunity_structured_draft_private_locations(id,drive_folder_node_id,private_storage_bucket,private_storage_prefix,verified_private_at,verified_by,created_by) VALUES(v_id,'020dcca5-7809-4287-88cd-537d837a3eee','project-drive','sales/opportunity/a6c62c81-1cc2-4804-b1c5-c004c6730b52/',now(),v_actor,v_actor);
+ INSERT INTO public.sales_opportunity_document_locations(id,opportunity_id,customer_id,department_id,drive_root_node_id,target_folder_node_id,private_storage_bucket,private_storage_prefix,location_purpose,authorized_by,authorized_at,created_by) VALUES(v_id,'a6c62c81-1cc2-4804-b1c5-c004c6730b52','03e06115-a7d4-4965-9e92-9c37462f5ddc','db21a9b2-2cd4-4891-9151-064bef8a7cb4','0c3e85df-f901-4bb9-9ea7-ee2072658faa','020dcca5-7809-4287-88cd-537d837a3eee','project-drive','sales/opportunity/a6c62c81-1cc2-4804-b1c5-c004c6730b52/','STRUCTURED_DRAFT',v_actor,now(),v_actor);
+END $binding$;
+COMMIT;

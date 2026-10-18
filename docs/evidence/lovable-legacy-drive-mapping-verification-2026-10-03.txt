@@ -1,0 +1,116 @@
+Read-only data verification next; do not change backend records or schema. Android project Documents now filters drive_nodes by selected Hardware department_id and project_id. For Emulator_V2.0 TCU Test Jig it returned zero nodes/BOM associations, while web project tabs previously showed BOM_Emulator_V2.0 for procurement (BOM-2026-0002 Rev 2) and casing2-12032022.stl. Inspect the actual project.department_id, visible drive_nodes department_id/project_id, saved BOM project_id and file storage mapping for that project. Report exact IDs, the reason for any missing canonical Drive mapping, and a reviewable repair proposal. Do not infer department ownership or move historical records automatically. Also identify the actual web route to the new scoped lifecycle template register and the verified Drive folder-kind mapping for all three final categories.
+
+Show more
+Today at 4:26 AM
+Thought for 1s
+
+I’ll inspect the live read-only links for that project and compare them with the scoped Drive contract.
+
+Used 20 tools
+Read-only verification — 2026-10-02 UTC
+Emulator_V2.0 TCU Test Jig
+Project ID: 31f21b91-46c4-4853-a573-a7890e41b605
+Project name: Emulator_V2.0 TCU Test Jig
+Project status: active
+projects.department_id: NULL
+Project Drive root: f8d74c27-aaad-45ff-861e-aad132105ba4
+Root name: EMULATOR-V20_Emulator_V2.0 TCU Test Jig
+Root department_id: NULL
+
+This is a legacy promoted/sample project. A Hardware-scoped Android query requiring both:
+
+drive_nodes.department_id = Hardware department ID
+drive_nodes.project_id = Emulator project ID
+
+correctly returns zero records because the project and all of its current Drive nodes have department_id = NULL. No department ownership was inferred or changed.
+
+Visible Drive data
+Drive nodes for the project: 30
+All have folder_kind = STANDARD
+All have department_id = NULL
+No DEPARTMENT_STANDARDS, INTERNAL_PROJECTS, or CLIENT_PROJECTS node is attached to this project.
+
+The known file is present:
+
+File node ID: 595f4467-e922-4f23-b614-ae127a3424da
+Filename: casing2-12032022.stl
+Node type: FILE
+Folder kind: STANDARD
+Project ID: 31f21b91-46c4-4853-a573-a7890e41b605
+Department ID: NULL
+Parent folder ID: 836564c5-2b54-4c3c-9187-0850263f4179
+Storage path:
+31f21b91-46c4-4853-a573-a7890e41b605/53a3be2f-983e-4ab3-a71d-d3040037b7f1-casing2-12032022.stl
+
+There is no drive_node_revisions row for that STL node, so it currently has a file storage mapping on drive_nodes.storage_path, but no revision-history record.
+
+Saved BOM association
+
+The BOM exists as a saved project BOM, independently of Drive:
+
+BOM ID: 4fabe830-793e-48e6-828e-450d08a7eb85
+BOM number: BOM-2026-0002
+Revision: 2
+Name: BOM_Emulator_V2.0 for procurement
+Project ID: 31f21b91-46c4-4853-a573-a7890e41b605
+Source filename: BOM_Emulator_V2.0 for procurement.xlsx
+Lines: 52
+source_drive_node_id: NULL
+source_drive_revision_id: NULL
+
+Therefore the prior web project-tab result is expected: it reads project_boms.project_id, not a canonical Drive association. The BOM spreadsheet itself has no registered Drive node or revision mapping.
+
+Why Android returns no documents or BOM associations
+The project is not owned by any department: projects.department_id IS NULL.
+Its project root, descendant folders, STL file, and other Drive nodes are also unmapped: drive_nodes.department_id IS NULL.
+The BOM is connected to the project, but its optional source_drive_node_id and source_drive_revision_id are both NULL.
+Hardware’s department ID is 8b8a397c-775e-4054-a4ee-857b8639a53c; no verified record links this project or its Drive tree to that department.
+Reviewable repair proposal — not applied
+Obtain an authoritative owner decision for the legacy project; do not derive Hardware ownership from its title, BOM, file type, or former UI visibility.
+After approval, use a governed backfill transaction that:
+assigns the approved projects.department_id;
+assigns the same department only to the verified project Drive root and its descendants;
+validates every affected node already belongs to that project;
+records an auditable legacy-mapping reason and actor;
+leaves unrelated legacy NULL records unchanged.
+Register the existing BOM workbook as a governed Drive file only if the actual workbook and approved provenance can be supplied. Then create the linked revision and populate the BOM’s source node/revision fields through the established protected workflow.
+Re-run Android reads using the approved department plus project scope, then verify that the Drive list, file preview, and BOM source link agree.
+
+No records, ownership, storage, links, or schema were changed.
+
+Lifecycle template register route
+
+The new scoped read-only register is at:
+
+/settings/lifecycle
+
+Its internal route ID is:
+
+/_authenticated/settings/lifecycle
+
+It reads RLS-visible department templates and stages. Draft/edit/clone/activate/retire controls remain explicitly disabled pending protected-action acceptance.
+
+Verified Drive category mapping
+Final category	Verified mapping	Status
+Common Controlled Documents	DEPARTMENT_STANDARDS root plus active drive_category_templates.placement = 'COMMON'	Mapped
+Periodic and Conditional Reviews	No authoritative existing folder or metadata mapping	Explicitly unmapped
+Project Deliverables	INTERNAL_PROJECTS or, if absent, CLIENT_PROJECTS; internal/client remains a secondary filter	Mapped
+
+The allowed department root kinds remain:
+
+DEPARTMENT_STANDARDS
+INTERNAL_PROJECTS
+CLIENT_PROJECTS
+
+Historical project folders such as Emulator are STANDARD nodes under an unmapped legacy project root, so they cannot satisfy the new department-scoped Android query until an authorized ownership/backfill decision is made.
+
+Build a mapping review report
+Flag missing Drive mappings
+Review the unmapped category
+Code
+Ask Lovable...
+
+
+
+
+Build

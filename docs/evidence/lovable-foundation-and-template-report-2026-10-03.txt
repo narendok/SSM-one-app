@@ -1,0 +1,103 @@
+Pack 0 is PARTIAL, not accepted: 4 JavaScript tests/build and linter counts do not replace DB mutation/concurrency/rollback/non-admin acceptance. Continue independent safe source work. First print a dated exact applied-schema Android contract: actual columns/enums/FKs/RLS predicates and grants for all five lifecycle tables, every action routine signature/grant, exact applied migration path/checksum, legacy predecessor/project-move trigger coverage, retirement/replay behavior and remaining findings. Print the full actual applied patch or provide inspectable source paths; distinguish server-only actions from accepted mobile actions. Do not apply additional live SQL or broaden access in this read/export checkpoint. Then implement in SOURCE ONLY the authorized existing-capability server-action facade and lead template lifecycle/settings + three-category department Drive metadata/read navigation from attached Pack 1, with meaningful authorization/version/idempotency tests. Keep deployment/mutations gated on exact review and suitable DB tests. No new roles/departments or fabricated templates/certificates/operational data. Report real vs planned outputs and file paths. Finish safe code/build work despite unavailable DB acceptance; do not stop at a future-tense plan.
+
+Show more
+Today at 4:04 AM
+Starting the requested source-only Pack 1 work
+
+I’ll document the live contract, then add gated source-only lifecycle and Drive actions without changing backend access or data.
+
+Android lifecycle read contract
+Done
+Audit lifecycle source contracts
+1m 5s
+Done
+Trace Drive navigation
+1m 5s
+Details
+Previewing
+Android lifecycle read contract — 2026-10-02 UTC
+
+Inspectable contract: LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md
+Applied SQL sources: supabase/migrations/20261002220916_5d158822-de77-479d-a8af-54037acc96ad.sql, ...220956...sql, ...222912...sql, ...223025...sql with SHA-256 hashes recorded in that contract.
+
+Readable lifecycle data
+
+All five tables use authenticated, RLS-scoped reads only:
+
+department_process_templates
+id, department_id → departments, template_key, version, title, description, status (DRAFT | ACTIVE | RETIRED), provenance/timestamps.
+Read predicate: current user can access that department Drive.
+
+department_process_template_stages
+id, template_id → templates, stage fields, source_company_process_stage_id → company_process_stages, task_department enum, required/provenance fields.
+Read predicate: parent template is visible.
+
+project_stage_dependencies
+Directed stage-to-predecessor links, both FKs point to project_process_stage_records.
+Read predicate: current user can access the linked project/department.
+
+project_feedback_revisions
+Project, active requirement baseline, revision/status (DRAFT | SUBMITTED | ACCEPTED | SUPERSEDED), optional same-project Drive source, provenance/timestamps.
+Read predicate: current user can access the project; baseline and optional Drive source must match the project scope.
+
+project_lifecycle_generation_requests
+Request key, project/template/version, requesting actor, payload hash, persisted result and timestamp.
+Read predicate: only the actor who requested it.
+
+Related provenance fields are available on project stage records and tasks. Drive revisions use sha256_checksum, not checksum.
+
+Actions and mobile status
+
+The six lifecycle routines are security-definer routines with execution limited to backend service operations:
+
+create template
+save template stage
+clone template
+activate template
+retire template
+generate project lifecycle draft
+
+Android/mobile action status: not accepted. Mobile may read the scoped lifecycle contract but must not mutate templates, generate records, create feedback, send notifications, approve/release, or publish external data.
+
+Applied safeguards
+Template/stage provenance is server-owned.
+Active/retired versions are immutable.
+Same replay key + actor + project + template/version + payload hash returns the existing generation receipt; mismatches conflict.
+Generated source stages cannot duplicate an existing project/company-stage source.
+Legacy predecessor_record_id and new dependency edges share mixed-DAG cycle prevention.
+Linked stage records cannot move between projects.
+Receipts are immutable after insertion.
+Remaining acceptance gap
+
+No database mutation, concurrent DAG, rollback, or non-admin RLS acceptance has been run. Those require an isolated database and approved test identities. Pack 0 therefore remains partial.
+
+Source-only Pack 1 completed
+
+Added
+
+src/lib/lifecycle-actions.functions.ts — authenticated, department-scoped server-action façade contracts; deliberately mutation-gated pending DB acceptance.
+src/lib/lifecycle-actions.contract.ts
+src/lib/lifecycle-actions.contract.test.ts
+src/lib/department-drive-navigation.ts
+src/lib/department-drive-navigation.test.ts
+LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md
+
+Updated
+
+src/components/drive/DriveBrowser.tsx — scoped Common / Internal projects / Client projects metadata indicators.
+LIFECYCLE_SCHEMA_PATCH_PENDING.md — marks historical SQL as non-reapplicable review history.
+AGENTS.md, roadmap.md — record the gated façade and Pack 0 blocker.
+
+Validation
+
+8/8 focused tests passed.
+Typecheck passed.
+Preview build passed.
+No additional live SQL, access expansion, roles, departments, templates, certificates, or operational data were created. Source-only Pack 1 is complete: the dated Android contract, gated lifecycle façade, and three-category Drive metadata navigation are in place; 8 focused tests and typecheck passed, with no new live database changes.
+Add lead template settings
+Add schema contract drift checks
+Ask Lovable...
+
+ c
+
+Build

@@ -1,0 +1,78 @@
+ fields through the established protected workflow.
+Re-run Android reads using the approved department plus project scope, then verify that the Drive list, file preview, and BOM source link agree.
+
+No records, ownership, storage, links, or schema were changed.
+
+Lifecycle template register route
+
+The new scoped read-only register is at:
+
+/settings/lifecycle
+
+Its internal route ID is:
+
+/_authenticated/settings/lifecycle
+
+It reads RLS-visible department templates and stages. Draft/edit/clone/activate/retire controls remain explicitly disabled pending protected-action acceptance.
+
+Verified Drive category mapping
+Final category	Verified mapping	Status
+Common Controlled Documents	DEPARTMENT_STANDARDS root plus active drive_category_templates.placement = 'COMMON'	Mapped
+Periodic and Conditional Reviews	No authoritative existing folder or metadata mapping	Explicitly unmapped
+Project Deliverables	INTERNAL_PROJECTS or, if absent, CLIENT_PROJECTS; internal/client remains a secondary filter	Mapped
+
+The allowed department root kinds remain:
+
+DEPARTMENT_STANDARDS
+INTERNAL_PROJECTS
+CLIENT_PROJECTS
+
+Historical project folders such as Emulator are STANDARD nodes under an unmapped legacy project root, so they cannot satisfy the new department-scoped Android query until an authorized ownership/backfill decision is made.
+
+Continue the approved final framework with source-only implementation and reviewable repairs. Add an admin-only legacy Drive ownership review UI with a read-only dry-run: show actual project/Drive department ownership, descendant consistency, source node/revision gaps and affected counts. Explicit ownership must be selected by an authorized owner; do not infer it from titles. Do not apply backfills or writes until a verified auditable transaction and database acceptance exist. For Periodic and Conditional Reviews, prepare a concrete additive folder-kind/metadata/server-action proposal with migration source and rollback/preflight tests in source only; do not run live SQL, alter roles/RLS, publish, create users, or fabricate missing source revisions/workbooks. Export exact read contract/route and test/build evidence for Android parity. Preserve existing eight departments.
+
+Show more
+Today at 4:36 AM
+Thought for 3s
+
+I’ll add a review-only legacy ownership screen and an unapplied proposal with testable safeguards, without touching live records.
+
+Reviewing admin Drive patterns finished
+Done
+Reviewing admin Drive patterns
+39s
+
+The background task finished inspection but there is no implementation or validation report. Please now finish the requested source changes: admin-only ownership review screen with read-only preflight, and the unapplied periodic-review mapping/server-action proposal. Compile/typecheck, run meaningful focused tests, build, and export the exact read contract and route. Stop before any live SQL/backfill/permission changes or publishing. Return concrete changed paths and actual validation results; inspection alone is not completion.
+
+Show more
+Today at 4:41 AM
+Thought for 2s
+
+I’ll finish the source-only review screen and proposal, then verify it without touching live records or permissions.
+
+Added Pack 1 admin read route
+Done
+Review Drive implementation patterns
+1m 19s
+Details
+Preview
+
+Implemented source-only Pack 1 completion.
+
+New admin read-only route: /admin/drive-ownership — ownership dry-run, Drive descendant consistency, storage/revision gaps, affected counts; no backfill or writes.
+Unapplied proposal: supabase/pending/20261003_periodic_conditional_review_mapping.sql with preflight, scoped protected action design, metadata mapping, and rollback.
+Android/read reference: LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md; proposal and route exported in PERIODIC_REVIEW_MAPPING_PROPOSAL.md.
+Changed paths: new review component/route/helpers/tests, proposal SQL/docs, src/routes/_authenticated/admin.tsx, roadmap.md, AGENTS.md.
+Validation: 12 focused tests passed; TypeScript check passed; production build passed; current build log shows OK.
+
+No live SQL, ownership backfills, permission/role changes, records, or publishing occurred.
+
+Add read-only audit export
+Test admin-only safeguards
+Details
+Ask Lovable...
+
+
+
+
+Build

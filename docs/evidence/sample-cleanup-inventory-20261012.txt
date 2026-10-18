@@ -1,0 +1,128 @@
+ [level=4]
+    - button "Export CSV":
+      - generic: Export CSV
+    - table "SQL query results":
+      - caption: SQL query results
+      - rowgroup:
+        - row "candidate_id candidate_key candidate_name candidate_status candidate_type created_at customer_id dependencies opportunity_id":
+          - columnheader "candidate_id":
+            - generic: candidate_id
+          - columnheader "candidate_key":
+            - generic: candidate_key
+          - columnheader "candidate_name":
+            - generic: candidate_name
+          - columnheader "candidate_status":
+            - generic: candidate_status
+          - columnheader "candidate_type":
+            - generic: candidate_type
+          - columnheader "created_at":
+            - generic: created_at
+          - columnheader "customer_id":
+            - generic: customer_id
+          - columnheader "dependencies":
+            - generic: dependencies
+          - columnheader "opportunity_id":
+            - generic: opportunity_id
+      - rowgroup:
+        - 'row "aaabd18c-5885-45de-9e0e-da70d4ec491f CUSTOMER-2026-0003 testcust draft customer_requirement 2026-10-06 02:55:53.656659+00 a2f299d4-f8ba-4c5c-8dcf-5437bb21166e {\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"dc0ccda7-b4ee-4d16-b4d5-a11a9ee8e7c6\"],\"requirement_revisions\":1} 0f965acc-5f00-4e3d-9000-9176d739a38c"':
+          - rowheader "aaabd18c-5885-45de-9e0e-da70d4ec491f"
+          - cell "CUSTOMER-2026-0003"
+          - cell "testcust"
+          - cell "draft"
+          - cell "customer_requirement"
+          - cell "2026-10-06 02:55:53.656659+00"
+          - cell "a2f299d4-f8ba-4c5c-8dcf-5437bb21166e"
+          - 'cell "{\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"dc0ccda7-b4ee-4d16-b4d5-a11a9ee8e7c6\"],\"requirement_revisions\":1}"'
+          - cell "0f965acc-5f00-4e3d-9000-9176d739a38c"
+        - 'row "36cdc159-57c7-4568-a1b0-ec481f5d3d93 CUSTOMER-2026-0004 testcust draft customer_requirement 2026-10-06 02:55:53.884827+00 a2f299d4-f8ba-4c5c-8dcf-5437bb21166e {\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"23e2a05a-d8b3-421c-b760-e0273143d766\"],\"requirement_revisions\":1} 0f965acc-5f00-4e3d-9000-9176d739a38c"':
+          - rowheader "36cdc159-57c7-4568-a1b0-ec481f5d3d93"
+          - cell "CUSTOMER-2026-0004"
+          - cell "testcust"
+          - cell "draft"
+          - cell "customer_requirement"
+          - cell "2026-10-06 02:55:53.884827+00"
+          - cell "a2f299d4-f8ba-4c5c-8dcf-5437bb21166e"
+          - 'cell "{\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"23e2a05a-d8b3-421c-b760-e0273143d766\"],\"requirement_revisions\":1}"'
+          - cell "0f965acc-5f00-4e3d-9000-9176d739a38c"
+        - 'row "6aa2fc2f-eb75-48c2-a9de-d13008cf1c5c CUSTOMER-2026-0005 testcust draft customer_requirement 2026-10-06 02:55:54.085953+00 a2f299d4-f8ba-4c5c-8dcf-5437bb21166e {\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"a3c747a3-cb61-43a6-805a-788848143680\"],\"requirement_revisions\":1} 0f965acc-5f00-4e3d-9000-9176d739a38c"':
+          - rowheader "6aa2fc2f-eb75-48c2-a9de-d13008cf1c5c"
+          - cell "CUSTOMER-2026-0005"
+          - cell "testcust"
+          - cell "draft"
+          - cell "customer_requirement"
+          - cell "2026-10-06 02:55:54.085953+00"
+          - cell "a2f299d4-f8ba-4c5c-8dcf-5437bb21166e"
+          - 'cell "{\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"a3c747a3-cb61-43a6-805a-788848143680\"],\"requirement_revisions\":1}"'
+          - cell "0f965acc-5f00-4e3d-9000-9176d739a38c"
+        - 'row "2db48440-5424-4e5e-bb5b-01f203a7662f CUSTOMER-2026-0006 testcust draft customer_requirement 2026-10-06 02:55:54.139239+00 a2f299d4-f8ba-4c5c-8dcf-5437bb21166e {\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"1bced975-c1c6-445c-be44-fa988c01e434\"],\"requirement_revisions\":1} 0f965acc-5f00-4e3d-9000-9176d739a38c"':
+          - rowheader "2db48440-5424-4e5e-bb5b-01f203a7662f"
+          - cell "CUSTOMER-2026-0006"
+          - cell "testcust"
+          - cell "draft"
+          - cell "customer_requirement"
+          - cell "2026-10-06 02:55:54.139239+00"
+          - cell "a2f299d4-f8ba-4c5c-8dcf-5437bb21166e"
+          - 'cell "{\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"1bced975-c1c6-445c-be44-fa988c01e434\"],\"requirement_revisions\":1}"'
+          - cell "0f965acc-5f00-4e3d-9000-9176d739a38c"
+        - 'row "e829dd82-381d-42ab-a808-62979e9156f4 CUSTOMER-2026-0007 testcust draft customer_requirement 2026-10-06 02:55:54.845896+00 a2f299d4-f8ba-4c5c-8dcf-5437bb21166e {\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"2a238167-050c-4e31-92a3-6d0ab0e611d9\"],\"requirement_revisions\":1} 0f965acc-5f00-4e3d-9000-9176d739a38c"':
+          - rowheader "e829dd82-381d-42ab-a808-62979e9156f4"
+          - cell "CUSTOMER-2026-0007"
+          - cell "testcust"
+          - cell "draft"
+          - cell "customer_requirement"
+          - cell "2026-10-06 02:55:54.845896+00"
+          - cell "a2f299d4-f8ba-4c5c-8dcf-5437bb21166e"
+          - 'cell "{\"activity_history\":1,\"baselines\":0,\"change_requests\":0,\"commercial_records\":0,\"current_revision\":1,\"feasibility_reviews\":0,\"handover_links\":0,\"portal_shared_items\":0,\"project_links\":0,\"requirement_revision_ids\":[\"2a238167-050c-4e31-92a3-6d0ab0e611d9\"],\"requirement_revisions\":1}"'
+          - cell "0f965acc-5f00-4e3d-9000-9176d739a38c"
+        - 'row "104fb9e2-7f83-40f9-a295-64b37aa8c7ee OPPORTUNITY-2026-0006 SYNTHETIC ONLY — Automotive Vehicle Tracker active sales_opportunity 2026-10-05 18:35:11.384386+00 03e06115-a7d4-4965-9e92-9c37462f5ddc {\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0} NULL"':
+          - rowheader "104fb9e2-7f83-40f9-a295-64b37aa8c7ee"
+          - cell "OPPORTUNITY-2026-0006"
+          - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+          - cell "active"
+          - cell "sales_opportunity"
+          - cell "2026-10-05 18:35:11.384386+00"
+          - cell "03e06115-a7d4-4965-9e92-9c37462f5ddc"
+          - 'cell "{\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0}"'
+          - cell "NULL"
+        - 'row "becebb23-e0f2-4264-a78f-fda04275cade OPPORTUNITY-2026-0007 SYNTHETIC ONLY — Automotive Vehicle Tracker active sales_opportunity 2026-10-05 18:35:22.8133+00 03e06115-a7d4-4965-9e92-9c37462f5ddc {\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0} NULL"':
+          - rowheader "becebb23-e0f2-4264-a78f-fda04275cade"
+          - cell "OPPORTUNITY-2026-0007"
+          - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+          - cell "active"
+          - cell "sales_opportunity"
+          - cell "2026-10-05 18:35:22.8133+00"
+          - cell "03e06115-a7d4-4965-9e92-9c37462f5ddc"
+          - 'cell "{\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0}"'
+          - cell "NULL"
+        - 'row "428d7d9e-25bf-4e98-94d5-416ea56155e3 OPPORTUNITY-2026-0008 SYNTHETIC ONLY — Automotive Vehicle Tracker active sales_opportunity 2026-10-05 18:35:32.799393+00 03e06115-a7d4-4965-9e92-9c37462f5ddc {\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0} NULL"':
+          - rowheader "428d7d9e-25bf-4e98-94d5-416ea56155e3"
+          - cell "OPPORTUNITY-2026-0008"
+          - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+          - cell "active"
+          - cell "sales_opportunity"
+          - cell "2026-10-05 18:35:32.799393+00"
+          - cell "03e06115-a7d4-4965-9e92-9c37462f5ddc"
+          - 'cell "{\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0}"'
+          - cell "NULL"
+        - 'row "dc101dd9-89a2-4dad-9903-3b2301a97d3b OPPORTUNITY-2026-0009 SYNTHETIC ONLY — Automotive Vehicle Tracker active sales_opportunity 2026-10-05 18:35:42.922861+00 03e06115-a7d4-4965-9e92-9c37462f5ddc {\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0} NULL"':
+          - rowheader "dc101dd9-89a2-4dad-9903-3b2301a97d3b"
+          - cell "OPPORTUNITY-2026-0009"
+          - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+          - cell "active"
+          - cell "sales_opportunity"
+          - cell "2026-10-05 18:35:42.922861+00"
+          - cell "03e06115-a7d4-4965-9e92-9c37462f5ddc"
+          - 'cell "{\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0}"'
+          - cell "NULL"
+        - 'row "d79f58c1-bbee-4940-9e67-88f267f5449b OPPORTUNITY-2026-0010 SYNTHETIC ONLY — Automotive Vehicle Tracker active sales_opportunity 2026-10-05 18:36:01.007681+00 03e06115-a7d4-4965-9e92-9c37462f5ddc {\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0} NULL"':
+          - rowheader "d79f58c1-bbee-4940-9e67-88f267f5449b"
+          - cell "OPPORTUNITY-2026-0010"
+          - cell "SYNTHETIC ONLY — Automotive Vehicle Tracker"
+          - cell "active"
+          - cell "sales_opportunity"
+          - cell "2026-10-05 18:36:01.007681+00"
+          - cell "03e06115-a7d4-4965-9e92-9c37462f5ddc"
+          - 'cell "{\"activity_history\":1,\"document_locations\":0,\"master_specifications\":0,\"nda_records\":0,\"portal_shared_items\":0,\"projects\":0,\"requirements\":0,\"stage\":\"new\",\"structured_drafts\":0,\"structured_materializations\":0,\"structured_requests\":0}"'
+          - cell "NULL"
+- status
+- region
