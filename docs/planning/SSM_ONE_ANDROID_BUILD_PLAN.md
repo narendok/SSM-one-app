@@ -1,77 +1,406 @@
-# SSM One — Android mobile build plan
+# SSM One — Android Mobile Managing Portal Master Plan
 
-Refined: 14 October 2026. **Android implementation plan only.**
+**Document Version:** 2.0 (Refined Architecture & Implementation Plan)  
+**Date:** 18 October 2026  
+**Target Repository:** `c:/Users/Admin/AndroidStudioProjects/SSMApplication3`  
+**Web / Backend Master Plan Reference:** [`SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md)  
+**Authoritative Backend Contracts:** [`docs/backend-handoff/mobile_backend_contract.json`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/mobile_backend_contract.json), [`docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md), [`docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md)
 
-This file owns mobile screens, navigation, repositories/ViewModels, device integration, cache/offline drafts, Android builds and mobile verification. The web portal's business workflow and backend delivery belong to [SSM_ONE_WEB_PORTAL_MASTER_PLAN.md](../../../SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md). Web-to-mobile handoff is a dependency between these plans, not a combined build queue.
+---
 
-## Authority and current checkpoint
+## 1. Executive Purpose & Architectural Authority
 
-Android lives in `C:/Users/Admin/AndroidStudioProjects/SSMApplication3`. The original Lovable project and managed backend remain the business source of truth. Read repository AGENTS.md, [project context](../SSM_ONE_PROJECT_CONTEXT.md), [agent state](../../SSM_ONE_AGENT_STATE.md) and newest [backend handoff](../backend-handoff/) before implementation. Current code and newer verified contracts override historical readiness claims.
+The **SSM One Android Mobile Application** serves as the authoritative on-the-move managing and operational client for the SSM One enterprise platform. It enables engineers, storekeepers, technicians, quality inspectors, facility managers, security guards, and executives to monitor operations, scan hardware/assets/lots, execute verified draft workflows, inspect document revisions, and perform controlled transactions from Android handheld devices and tablets.
 
-Earlier Android compile/test/build/emulator checkpoints are retained in `docs/evidence/`; they were not rerun for this documentation split. Do not infer finished mobile features or live authorization from web source, a READY backend label or an admin screenshot. Inspect the current Android group and verify its actual baseline before continuing; do not rebuild unaffected stages.
+### 1.1 System Authority Split
 
-## Mobile-only architecture
+```mermaid
+flowchart TD
+    subgraph BackendAuthority["Authoritative Backend (Supabase Cloud yyrvduosyyaluifqvwkr)"]
+        AUTH["Supabase Auth & User Identities"]
+        RLS["Authoritative Row Level Security"]
+        RPC["Controlled Transaction RPCs (Numbering, Atomicity)"]
+        BUCKETS["Private Storage Buckets (Quarantined / Signed Delivery)"]
+        AUDIT["Immutable Audit Ledger & Data Provenance"]
+    end
 
-- Compose event → non-suspend ViewModel event → viewModelScope.launch → suspend repository. No GlobalScope or direct suspend mutations from Compose.
-- Reuse authoritative backend IDs, records, capabilities/RLS and server numbering. No Android-only business source-of-truth tables or local approval authority.
-- APK receives only public Supabase URL and anon/publishable configuration, never service-role, database, signing or private OAuth credentials.
-- Use existing Room, WorkManager, PendingMutation/PendingUpload where actually present, and SyncCoordinator. Extend missing upload/read-cache/conflict facilities through the common foundation; no feature-specific sync engines.
-- Classify actions OFFLINE_SAFE, OFFLINE_DRAFT_ONLY or ONLINE_REQUIRED from verified contracts. Critical stock/approval/release/financial actions remain online. Cached stock is explicitly stale/non-authoritative.
-- Partition cached reads/drafts/jobs by authenticated account/scope; clear/cancel stale work on logout or scope changes. Preserve request keys and expected source/template revisions; conflicts require explicit comparison/resolution.
+    subgraph WebPortal["Web Portal (Lovable d758dbf2 / SSMOneWeb)"]
+        WEB_UI["TanStack Start / React 19 / Vite Web App"]
+        WEB_WORKSPACES["8 Departmental Web Portals"]
+        WEB_EDITORS["Rich DOCX, XLSX & Lifecycle Generators"]
+    end
 
-## Android experience
+    subgraph AndroidClient["Android Client (Kotlin / Compose / SSMApplication3)"]
+        COMPOSE["Jetpack Compose UI (Light & Dark Theme)"]
+        VIEWMODEL["AndroidX ViewModels + StateFlow"]
+        REPO["Repository Layer (Supabase Kotlin SDK)"]
+        SYNC["Common SyncCoordinator + WorkManager"]
+        ROOM["Room Database (Account-Partitioned Offline Cache)"]
+        HARDWARE["CameraX Scanner (QR / Barcode) & Secure Keystore"]
+    end
 
-Five tabs: **Dashboard → Work → Search/Scan → Drive → More**. Top bar contains notifications and a permitted presentation department selector. Department switching never impersonates another identity.
+    BackendAuthority -->|Authenticated Sessions & RPCs| WebPortal
+    BackendAuthority -->|RLS-Governed Queries & Controlled Mutations| AndroidClient
+    WebPortal -.->|Document & Schema Handoff| AndroidClient
+```
 
-Dashboard gives compact Today/Pending summaries, assignee/project links, overdue work and unavailable metrics honestly. Work shows each permitted department's primary queue and useful details/actions. Search/scan/deep links use caller-visible backend records; denied/missing targets clear stale content. Drive links the same department/project document revision as the web portal. Apply the web-owned four-group taxonomy through accepted read contracts rather than creating a mobile document hierarchy.
+### 1.2 Non-Negotiable Architecture Rules
 
-## Controlled build sequence
+1. **Backend Owns Truth**: The Supabase backend owns users, profiles, employees, roles, permissions, projects, inventory stock, official numbering, and transaction atomicity. The Android client never creates local source-of-truth business tables (e.g. no `mobile_inventory`, no `mobile_purchase_orders`).
+2. **Credential Boundary**: The APK receives strictly `SUPABASE_URL` and `SUPABASE_ANON_OR_PUBLISHABLE_KEY`. It never contains `service_role`, database passwords, JWT signing secrets, or private OAuth secrets.
+3. **RLS Authorization**: Authorization is strictly enforced by backend Row-Level Security. Android never overrides or replaces backend RLS with client-side UI hiding or locally cached roles. An empty response from Supabase represents denied access.
+4. **Controlled Mutation Atomicity**: Critical inventory, asset, and document state changes (Final GRN, Material Issue, Material Return, Stock Transfer, Stock Adjustment, Document Release) must invoke designated server RPCs with client-generated UUID `request_key` idempotency tokens. Critical mutations remain `ONLINE_REQUIRED`.
+5. **Single Common Sync Engine**: All offline caching, mutation queues, and background synchronization must use the common `SyncCoordinator`, Room database, and WorkManager infrastructure. Feature-specific synchronization daemons (e.g., `GrnSyncWorker`, `InventorySyncWorker`) are strictly prohibited.
+6. **Package Path Discipline**: Package paths must not use Kotlin reserved words (e.g. use `feature.stores.returns`, never `feature.stores.return`).
 
-| Mobile stage | Scope / delivery boundary |
+---
+
+## 2. Android Experience & UI Architecture
+
+### 2.1 Five-Tab Navigation Framework
+
+The application implements a predictable, thumb-accessible five-tab bottom navigation structure supplemented by a dynamic top operational bar:
+
+```mermaid
+flowchart LR
+    TAB1["1. Dashboard<br/>(Today / Pending / My Day)"]
+    TAB2["2. Work<br/>(8 Department Queues)"]
+    TAB3["3. Search & Scan<br/>(CameraX QR/Barcode)"]
+    TAB4["4. Drive<br/>(Controlled Documents)"]
+    TAB5["5. More<br/>(Settings, Sync, Profile)"]
+```
+
+1. **Dashboard (My Day)**:
+   - Role-aware daily cockpit showing *Today's Tasks*, *Pending Actions*, and *Overdue Items*.
+   - Filtered by the active presentation department, with quick links to assigned project cards and task checklists.
+   - Honest metric presentation: unavailable or restricted metrics are clearly badged as *Restricted* or *Unavailable* rather than rendering dummy zeroes.
+2. **Work (Departmental Operational Queues)**:
+   - Primary operational surface exposing the 8 enterprise department workflows based on user permissions.
+   - Filterable by department, status, project, and priority.
+3. **Search & Scan**:
+   - High-performance barcode and QR scanner using CameraX and ML Kit / ZXing.
+   - Instantly resolves physical items to authoritative records: components (MPN), reels, storage bins, lots, asset tags, employee badges, travelers, and purchase orders.
+   - Deep-linking engine navigates directly to the resolved entity detail screen.
+4. **Drive (Controlled Documents & BOMs)**:
+   - Scoped departmental document roots mirroring the web portal Drive taxonomy.
+   - Exposes controlled document registers, revision timelines, version tags, and project BOM linkages.
+   - Native read-only previewers for PDF, images, and tabular XLSX/BOM data.
+5. **More (Administration & Connectivity)**:
+   - User profile, department switcher (presentation alias, without privilege elevation).
+   - Sync Coordinator center: visual status of pending offline drafts, sync logs, cache size, network health.
+   - App settings, theme toggle (Light / Dark / System default).
+
+### 2.2 Dark Mode & Material 3 Theming
+
+The application adheres to Material Design 3 with comprehensive Light and Dark theme implementations that visually align with the SSM One web portal:
+
+- **Dynamic Theme Palette**:
+  - Light Palette: High-contrast slate and industrial blue accents, clean white/gray surfaces (`#F8FAFC`, `#FFFFFF`), subtle borders (`#E2E8F0`).
+  - Dark Palette: Deep charcoal surfaces (`#090D16`, `#111827`, `#1E293B`), subdued text tones (`#F1F5F9`, `#94A3B8`), and vibrant indicator accents for active, warning, and success states.
+- **Theme State Management**: Integrated into `Theme.kt`, observing system theme changes and providing an explicit user override stored in encrypted preferences.
+
+---
+
+## 3. Departmental Coverage (8 Workspaces)
+
+The Android app provides operational mobile clients for all 8 enterprise departments:
+
+```mermaid
+graph TD
+    DEPT1["1. Sales & Customer Intake"]
+    DEPT2["2. Hardware & R&D (Engineering)"]
+    DEPT3["3. Procurement & Stores"]
+    DEPT4["4. Production & Quality"]
+    DEPT5["5. Facility, Assets & Maintenance"]
+    DEPT6["6. Security & Workplace"]
+    DEPT7["7. HR, Training & Management"]
+    DEPT8["8. Operations & QMS"]
+```
+
+### 3.1 Sales & Customer Intake
+- **Mobile Scope**: Read-only commercial pipeline, active customer directories, assigned enquiries, and feasibility review status.
+- **Key Tables**: `customers`, `customer_contacts`, `customer_requirements`, `customer_requirement_revisions`, `customer_portal_shares`.
+- **Boundaries**: Customer quotations, pricing models, and contract signing remain web-authoritative. Mobile displays operational project links without exposing confidential financial margins.
+
+### 3.2 Hardware & R&D (Engineering & BOM Management)
+- **Mobile Scope**:
+  - Project repository exploration (`projects`, `project_members`, `project_process_stage_records`).
+  - Company Process Stage Tracking (Taxonomy HW_01 to HW_37) with predecessor lock indicators and evidence links.
+  - **Tentative BOM vs. Released BOM Inspection**:
+    * Full line-level stock match status (Exact Match, Substitute Available, Shortage, Unstocked).
+    * Alternate component review rationale and datasheet links (`datasheet_cache`).
+    * Revision comparison between Draft/Tentative engineering BOMs and Released production BOMs (`project_boms`).
+  - Engineering Changes: Review active ECR/ECO records, linked tasks, and impacted parts.
+
+### 3.3 Procurement & Stores (Stage 5 Detailed Delivery)
+Procurement and Stores follow the strict staged execution sequence (5A through 5G):
+
+- **5A — Procurement Read-Only**:
+  - Safe operational projections: `operational_purchase_requests`, `operational_purchase_request_items`, `operational_rfqs`, `operational_po_shipments`, `operational_vendors`.
+  - Excludes unit costs, margins, payment terms, and vendor bank accounts.
+- **5B — Receiving Drafts**:
+  - Scan PO barcode or ASN to load expected items via `operational_receiving_purchase_orders`.
+  - Component verification: MPN scanning, lot number, batch code, date code, reel ID, packaging condition, MSL/ESD flags.
+  - Photo evidence capture attached to local draft receiving vouchers.
+  - Drafts saved locally in Room; strictly no offline Final GRN posting.
+- **5C — Inventory Read-Only**:
+  - Component search by MPN, manufacturer, description, category, or bin location (`components`, `inventory_lots`, `storage_locations`).
+  - Stock visibility categorized as Available, Quality Hold / Quarantine, or Reserved.
+  - Explicit *Cached / May-be-outdated* freshness timestamp on every stock screen.
+- **5D — Material Issue & Return**:
+  - Material Issue: Online posting via `post_material_issue` against valid project work orders.
+  - Material Return: Online posting via `post_material_return` (package `feature.stores.returns`), preventing over-return atomically.
+- **5E — Cycle Counts & Blind Picking**:
+  - Assigned cycle count sheets with blind count support (system stock quantity hidden from count operator).
+  - Pick list execution with barcode confirmation per line.
+- **5F — Final GRN & Critical Stock Transactions**:
+  - Online-only execution of `create_grn`, `post_stock_transfer`, and `post_stock_adjustment`.
+  - Enforces client UUID idempotency tokens, server numbering, row-locking concurrency, and immutable audit logs.
+- **Review-Based Import / Draft Handling**:
+  - When PO or invoice data is scanned or imported from external supplier manifests, records are placed into a *Draft Review Queue*.
+  - No inventory stock movement occurs until formally approved and received through the controlled receiving inspection gate.
+
+### 3.4 Production & Quality
+- **Mobile Scope**:
+  - Traveler & Work Order Execution: `work_orders`, `production_routes`, `routing_steps`, `production_units`.
+  - Step check-in/check-out with operator badge scan.
+  - Quality Inspection: In-process and final inspection checklists (`inspection_records`, `ncr_records`).
+  - Defect logging with camera photo evidence and quarantine tagging.
+  - PPAP / First Article Inspection review summaries and dispatch packaging verification.
+
+### 3.5 Facility, Assets & Maintenance
+- **Mobile Scope**:
+  - Asset Directory & Quick Scan: `assets`, `asset_categories`, `asset_assignments`.
+  - Machinery Registers: Operating state, maintenance history, and assigned operators.
+  - Preventive Maintenance (PM): Scheduled PM checklists with step-by-step sign-off and photo upload.
+  - Breakdown Work Orders: Rapid breakdown ticket creation with priority rating, machine stoppage timer, and technician dispatch.
+  - Calibration Logs: Measuring equipment calibration dates, certificate inspection, and out-of-calibration warnings (`calibration_records`).
+
+### 3.6 Security & Workplace
+- **Mobile Scope**:
+  - Gatehouse Cockpit: Visitor check-in/check-out with badge generation (`visitor_logs`).
+  - Material Gate Pass Verification: Inward and outward pass scanning against approved store transfers (`gate_passes`).
+  - Vehicle Logistics: Truck entry/exit logging, driver details, and loading bay assignment.
+  - Workplace Incident Reports: Hazard identification, injury reporting, and facility security patrols.
+
+### 3.7 HR, Training & Management
+- **Mobile Scope**:
+  - Organization Directory: Department employee list with contact shortcuts (`employees`, `departments`).
+  - Training & Competency Matrix: Verification of operator certifications before authorizing specialized machinery operation.
+  - Personal Workspace: Leave application status, assigned training modules, and policy acknowledgements.
+
+### 3.8 Operations & QMS (Quality Management System)
+- **Mobile Scope**:
+  - Controlled Document Viewer: RLS-governed access to company SOPs, manuals, work instructions, and specifications (`document_control_registers`, `document_control_events`).
+  - Audit Trail Timeline: Real-time inspection of document revisions and change histories.
+  - Audit & CAPA Inspection: Internal audit checklists, corrective action tracking, and KPI dashboard monitoring.
+
+---
+
+## 4. Offline Engine & Sync Architecture
+
+```mermaid
+flowchart TD
+    UI["Compose UI Action"] --> CLASSIFY{"Action Classification"}
+    
+    CLASSIFY -->|OFFLINE_SAFE| LOCAL_ROOM["Room Database (Read / Cache)"]
+    CLASSIFY -->|OFFLINE_DRAFT_ONLY| DRAFT_ROOM["Room PendingMutation / PendingUpload"]
+    CLASSIFY -->|ONLINE_REQUIRED| NET_CHECK{"Network Available?"}
+    
+    NET_CHECK -->|No| BLOCK["Block Action & Prompt User (Online Required)"]
+    NET_CHECK -->|Yes| EXECUTE_RPC["Execute Governed Supabase RPC"]
+    
+    DRAFT_ROOM --> SYNC_COORD["SyncCoordinator (WorkManager)"]
+    SYNC_COORD -->|Online & Auth Valid| FLUSH_RPC["Flush Mutation to Backend"]
+    FLUSH_RPC -->|Conflict / Reject| RESOLVE["Record Conflict in Local Audit"]
+```
+
+### 4.1 Action Classification Rules
+
+Every user action in the mobile app is strictly classified:
+
+| Classification | Meaning | Examples |
+|---|---|---|
+| `OFFLINE_SAFE` | Read-only operations against cached Room tables. Stale indicators are displayed. | Browsing downloaded SOPs, reviewing cached component lists, viewing project directories. |
+| `OFFLINE_DRAFT_ONLY` | Data entry that creates a local draft. Never changes server state until synced and verified online. | Receiving draft vouchers, cycle count observations, breakdown reports, visitor entries, inspection checklists. |
+| `ONLINE_REQUIRED` | Cannot be performed offline. Must execute synchronously against Supabase with server-side validation and locking. | Final GRN creation, Material Issue, Material Return, Stock Transfers, Stock Adjustments, Document Release. |
+
+### 4.2 Room Partitioning & Security
+
+- Room database schemas are isolated per authenticated user account (`account_id` column on all cached tables).
+- Logging out or switching accounts flushes uncommitted non-draft caches and resets repository state.
+- Sensitive credentials, auth tokens, and session keys are kept exclusively in Android EncryptedSharedPreferences (backed by Android Keystore), never in plain Room tables.
+
+---
+
+## 5. Technical Implementation Stack & Directory Structure
+
+### 5.1 Android Technology Stack
+
+- **Language**: Kotlin 2.0+ (100% Kotlin, Coroutines, Flow).
+- **UI Toolkit**: Jetpack Compose + Material 3, Navigation Compose.
+- **Architecture**: Clean Architecture (Presentation → Domain → Data) + MVI / Unidirectional Data Flow.
+- **Backend SDK**: Supabase Kotlin Client (`gotrue-kt`, `postgrest-kt`, `storage-kt`, `realtime-kt`).
+- **Local Persistence**: Androidx Room with SQLite KSP compiler.
+- **Background Work**: Androidx WorkManager with CoroutineWorker.
+- **Hardware Integration**: CameraX (preview & image analysis), ML Kit Barcode Scanning / ZXing.
+- **Dependency Injection / Factory**: Lightweight Repository & ViewModel providers adhering to Android lifecycle guidelines.
+
+### 5.2 Source Code Directory Layout
+
+```text
+app/src/main/java/com/example/ssmapplication3/
+├── MainActivity.kt                      # App entry point, theme provider, root navigation
+├── core/
+│   ├── auth/                            # Session manager, secure token storage, Google OAuth
+│   ├── network/                         # SupabaseClientProvider, error parsers, interceptors
+│   ├── security/                        # Capabilities, permission checkers, device security
+│   ├── sync/                            # SyncCoordinator, PendingMutation, WorkManager workers
+│   ├── ui/                              # Common Compose components, status badges, dialogs
+│   └── util/                            # Environment config, Flow helpers, date formatters
+├── data/
+│   ├── local/                           # Room database, DAOs, local entity models
+│   └── repository/                      # Repository implementations connecting Supabase & Room
+├── domain/
+│   ├── model/                           # Pure Kotlin business models & domain entities
+│   └── repository/                      # Domain repository interfaces
+├── feature/
+│   ├── auth/                            # Sign-in screen, SSO callback, session restore
+│   ├── dashboard/                       # My Day cockpit, today/pending checklists
+│   ├── documents/                       # Drive document browser, controlled register viewer
+│   ├── engineering/                     # Projects, BOM dual-lifecycle, stage tracking HW_01-37
+│   ├── facility/                        # Asset register, PM checklists, breakdown reporting
+│   ├── inventory/                       # Component lookup, lot/reel details, stock freshness
+│   ├── mywork/                          # Unified work queue across permitted departments
+│   ├── notifications/                   # Notification center, alert routing
+│   ├── procurement/                     # PR, RFQ, PO, shipment tracking (safe projections)
+│   ├── production/                      # Travelers, work orders, routing inspection
+│   ├── receiving/                       # Receiving draft vouchers, PO item matching
+│   ├── scanner/                         # CameraX barcode/QR scanner, deep-link resolver
+│   ├── security/                        # Visitor logging, gate passes, vehicle registers
+│   └── stores/                          # Critical stock transactions
+│       ├── adjustments/                 # Stock adjustments (ONLINE_REQUIRED)
+│       ├── issues/                      # Material issue posting (ONLINE_REQUIRED)
+│       ├── returns/                     # Material return posting (ONLINE_REQUIRED)
+│       └── transfers/                   # Stock transfers (ONLINE_REQUIRED)
+├── navigation/                          # AppNavigation, Screen routes, DeepLinkHandler
+└── ui/theme/                            # Color, Theme (Dark/Light), Type, Shape
+```
+
+---
+
+## 6. Authoritative Handoff Contract Index
+
+The Android client directly implements data structures and calls corresponding to the generated backend specifications:
+
+| Backend Contract Artifact | Purpose & Android Mapping |
 |---|---|
-| 1. Foundation | Authentication/session, safe public configuration, app shell and navigation |
-| 2. Common engine | Shared repositories, tasks/My Day, search, notification/deep-link and permission-aware presentation |
-| 3. Offline/sync | Common account-scoped Room/WorkManager/SyncCoordinator drafts/cache; action classification and conflict handling |
-| 4. Engineering/R&D | Permitted project/BOM/requirements/stage/document reads and supported draft/evidence actions |
-| 5. Procurement/Stores | Follow the required 5A–5G order below against exact accepted contracts |
-| 6. Production/Quality | Assigned route/kitting/scan/test/evidence/traceability; critical material/disposition/release online |
-| 7. Facility/Maintenance/Calibration | Assigned assets/PM/breakdown/instrument evidence, limited by actual capabilities |
-| 8. Security/Workplace | Scoped gate/visitor/security actions; no automatic access to all Facility/IT/assets |
-| 9. HR/Finance/Management/QMS | Purpose-scoped cases/reviews/competence/operational evidence; official decisions online |
-| 10. AI/Voice/Automation | Consume accepted authorized search/assistant/voice contracts; external messaging/calls require explicit action |
-| 11. Hardening | Account/scope isolation, safe file handling, performance, recovery and device regression |
-| 12. End-to-end UAT | Approved restricted identities/environment; web/mobile same record/revision and allowed/denied evidence |
+| [`mobile_backend_contract.json`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/mobile_backend_contract.json) | Complete machine-readable catalog of all 180+ tables, foreign keys, columns, RPC signatures, and bucket paths. |
+| [`MOBILE_BACKEND_CONTRACT.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md) | Object classification matrix: `MOBILE_READ_SAFE`, `ONLINE_REQUIRED`, `WEB_ONLY`. |
+| [`ANDROID_BACKEND_HANDOFF.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md) | Safe configuration boundaries, operational projection specifications, RLS rules. |
+| [`LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/LIFECYCLE_ANDROID_READ_CONTRACT_RENDERED_2026-10-03.txt) | Specification for displaying HW_01–HW_37 stages, department templates, and dependency chains. |
+| [`VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md) | Contract for `operational_*` safe views omitting financial/commercial data. |
+| [`VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md) | Signatures and idempotency rules for `post_material_issue` and `post_material_return`. |
 
-These are the existing mobile stages, not new web business phases or completion claims.
+---
 
-### Stage 5 execution order
+## 7. Stage-by-Stage Implementation Roadmap
 
-| Group | Required mobile work |
-|---|---|
-| 5A | Procurement read-only: PR/RFQ/PO/revisions, acknowledgements/ASN/delivery where supported, safe operational vendors |
-| 5B | Receiving draft: PO/ASN, component scan/match, lot/batch/date code/reel/serial, MSL/ESD/package/evidence where supported; no offline final GRN |
-| 5C | Inventory read-only: MPN/component/bin/lot/reel/serial, quarantine and reservations; freshness markers |
-| 5D | Material issue/return through exact authoritative transactions; final posting online; package path `feature.stores.returns` |
-| 5E | Assigned cycle-count observations/blind counts and reservations/picking where contracts exist; final adjustments controlled online |
-| 5F | Final GRN and critical stock operations: atomicity, idempotency, concurrency, current authorization, numbering and audit |
-| 5G | Scanner/search/My Day/notifications/deep links, RLS/end-to-end and integration regression |
+The mobile roadmap is organized into 12 controlled stages. Progress adheres to the strict engineering discipline: **INSPECT → IMPLEMENT → COMPILE → TEST → BUILD → DEVICE VERIFY → EVIDENCE → CONTINUE**.
 
-Backend handoff 5A–5F labels may describe transaction remediation rather than these mobile groupings. Map each feature to its actual contract; never equate matching labels with feature readiness. Missing cycle-count/picking or another operation blocks only that operation. Final 5G acceptance still requires approved live identities and suitable test support; no random production users.
+```mermaid
+flowchart TD
+    S1["Stage 1: Foundation (Auth, Shell, Theme)"] --> S2["Stage 2: Common Engine (My Day, Search, Tasks)"]
+    S2 --> S3["Stage 3: Offline & Sync Core (Room, SyncCoordinator)"]
+    S3 --> S4["Stage 4: Engineering & BOMs (HW_01-37, Tentative/Released)"]
+    S4 --> S5["Stage 5: Procurement & Stores (5A-5G Strict Order)"]
+    S5 --> S6["Stage 6: Production & Quality (Travelers, Inspections)"]
+    S6 --> S7["Stage 7: Facility & Assets (Machinery, PM, Calibration)"]
+    S7 --> S8["Stage 8: Security & Workplace (Visitors, Gate Passes)"]
+    S8 --> S9["Stage 9: HR, Training & QMS (Directory, Controlled Docs)"]
+    S9 --> S10["Stage 10: AI, Voice & Smart Assistance"]
+    S10 --> S11["Stage 11: Security Hardening & Performance"]
+    S11 --> S12["Stage 12: End-to-End Multi-Role Device UAT"]
+```
 
-## Web handoff consumption
+### Stage 1: Foundation (COMPLETED / VERIFIED)
+- Supabase auth integration (Email/Password, Google OAuth).
+- Session manager with encrypted token storage.
+- Navigation shell with 5-tab scaffold and top bar.
+- Material 3 Theme foundation with Dark Mode and Light Mode support.
 
-After a web/backend group is accepted, inspect its exact fields/enums, payload/response/errors, grants/RLS, numbering/replay/concurrency, file delivery, offline classification and evidence under `docs/backend-handoff/`. Pending SQL is not callable. Keep mobile contracts in that folder and mobile implementation evidence in `docs/evidence/`; web evidence belongs in `SSMOneWeb/docs/evidence/`.
+### Stage 2: Common Engine (COMPLETED / VERIFIED)
+- Role-aware Dashboard / My Day cockpits with Today and Pending tasks.
+- Unified task repository querying `project_tasks` partitioned by department.
+- Deep link resolution foundation and notification badges.
 
-Consume Sales/customer/feasibility/project/document/register/directory features only when their supported interfaces are verified. Mobile permits assigned typed draft edits, task notes/checklists/evidence and supported online decisions; it does not implement web backend gates or synchronize a second customer Excel authority.
+### Stage 3: Offline & Sync Core (COMPLETED / VERIFIED)
+- Room database schema with account isolation.
+- Common `SyncCoordinator` handling draft queues (`PendingMutation`, `PendingUpload`).
+- Network connectivity monitor and conflict resolution handlers.
 
-Stage native readers independently: PDF → XLSX/BOM read preview → supported STL/glTF. Spreadsheet reading does not imply arbitrary formula editing/recalculation; STEP/native CAD requires an accepted rendition/converter or external/download fallback. Verify licensing, limits and malicious-file handling before choosing libraries. Confidential cache and file expiry follow backend policy.
+### Stage 4: Engineering & R&D Workspace (IN PROGRESS / ACTIVE REFINEMENT)
+- Project directory and project team exploration.
+- Hardware process stages (HW_01 to HW_37) with predecessor lock indicators.
+- **Tentative BOM vs Released BOM Inspection**:
+  * Line-by-line stock match visualization (Exact, Substitute, Shortage).
+  * Mouser component enrichment view (MPN, package, datasheet link).
+  * Revision comparison between draft/tentative engineering BOMs and approved released production BOMs.
+- Engineering Change Requests (ECR) and ECO impact review.
 
-## Compile, verify and continue
+### Stage 5: Procurement, Stores & Receiving (STRICT 5A–5G SEQUENCE)
+- **5A (Procurement Read-Only)**: PR, RFQ, PO, ASN, Vendor list using `operational_*` safe projections.
+- **5B (Receiving Draft)**: PO/ASN selection, CameraX barcode scan matching, lot/batch/reel capture, draft voucher storage.
+- **5C (Inventory Read-Only)**: MPN stock search, bin location lookup, stock freshness timestamps.
+- **5D (Material Issue & Return)**: Online posting via `post_material_issue` and `post_material_return`.
+- **5E (Cycle Counts & Picking)**: Blind count execution, pick lists with line-by-line verification.
+- **5F (Final GRN & Critical Stock)**: `create_grn`, `post_stock_transfer`, `post_stock_adjustment` with UUID idempotency.
+- **5G (Integration & Acceptance)**: End-to-end scanner, notifications, and regression test suite.
 
-For each meaningful mobile group: inspect → implement → compile → focused meaningful tests → debug build → actual emulator/device evidence → update state → continue. Stop accumulating changes while compilation errors exist. Proportionate checks suffice for reversible presentation work; critical mutations, account isolation, stale revisions and denied access require stronger evidence.
+### Stage 6: Production & Quality Assurance
+- Route station tracking and electronic travelers.
+- Component lot traceability during assembly.
+- In-process inspection, NCR creation with photos, PPAP sign-offs.
 
-Use repository Gradle tasks appropriate to the change, including `:app:testDebugUnitTest` and `:app:assembleDebug` for relevant groups. A successful build does not prove live RLS or real file-byte/notification/transaction behavior. Record contract/source/environment and scope of device evidence, without credentials. Production release/go-live, destructive changes, credential/access changes and new live users require applicable explicit authorization.
+### Stage 7: Facility, Assets, Maintenance & Calibration
+- Asset QR scanning and metadata cards (`assets`).
+- Machinery operational state and breakdown ticketing.
+- Preventive maintenance schedules with step checklists.
+- Instrument calibration validity and certificate viewing (`calibration_records`).
 
-## Next mobile action
+### Stage 8: Security, Visitors & Workplace Logistics
+- Gatehouse visitor check-in, pass generation, and host notifications.
+- Material gate pass verification (inward / outward).
+- Loading bay vehicle logs and incident report logging.
 
-Inspect current source and newest contracts, identify the actual remaining mobile group and its supported operations, then execute that bounded group. Continue independent safe reads/UI while web feasibility/DOCX contracts are pending. The web portal's current Sales feasibility handover priority is not an instruction to pause all Android work or to implement a competing mobile transaction.
+### Stage 9: HR, Training & Controlled Documents (QMS)
+- Department staff directory and contact integration.
+- Operator skill matrix verification.
+- Controlled Document Register: RLS-permitted viewing of SOPs, manuals, and revision timelines.
+
+### Stage 10: AI, Voice & Mobile Automation
+- Voice-assisted inventory lookup and notes transcription.
+- Intelligent scanner recognition for damaged packaging or illegible supplier labels.
+- Scoped AI assistant answering procedural questions against cached SOPs.
+
+### Stage 11: Security Hardening, Performance & Recovery
+- Memory optimization and list virtualization for large BOMs and component catalogs.
+- Safe file handling, sandboxed PDF rendering, and zero-cache leakage on logout.
+- ProGuard / R8 code shrinking and security audit.
+
+### Stage 12: End-to-End Multi-Role Acceptance Testing
+- Live testing on physical Android devices across distinct test identities (Engineer, Storekeeper, Inspector, Manager).
+- Verification of parity between web changes and mobile viewports.
+- Full regression passing `:app:testDebugUnitTest` and clean `:app:assembleDebug` packaging.
+
+---
+
+## 8. Verification & Execution Gates
+
+Every implementation increment must provide documented evidence meeting these gates before marking complete:
+
+1. **Static & Syntax Gate**: `:app:compileDebugKotlin` exits with code `0`.
+2. **Unit Test Gate**: `:app:testDebugUnitTest` passes all unit tests across data, domain, and ViewModels.
+3. **Packaging Gate**: `:app:assembleDebug` successfully produces a valid debug APK.
+4. **Device / Emulator Gate**: Verified on an Android emulator or physical device; screenshot or CLI log preserved in `docs/evidence/`.
+5. **Contract Conformance Gate**: Network calls must conform strictly to `mobile_backend_contract.json` without inventing endpoints, columns, or tables.
