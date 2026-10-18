@@ -35,3 +35,11 @@ Mark each feature separately: proposed, source-tested, specifically approved for
 ## Current acceptance boundary
 
 Existing source contains HR leave/policy and other partial features, but this packet has not verified the new full People/forms/client contracts. Existing backend exports are older than this planning expansion; do not treat them as coverage for every new operation. No feature enablement, grant, migration, scheduler activation, financial approval or publication occurs from this document.
+
+## Approved client layout and additional pending contract requirements
+
+Client design baseline: Home / Projects / central Scan-Verify / Orders / Support. Verification requires the actual scoped device/document reference resolver, current published revision/release state, denied/unknown privacy, pagination/rate limits where applicable and camera/manual fallback; a record match is not physical authenticity certification. New resolver/access remains pending, not authorized by UI approval.
+
+Lead Process Flow editing must reuse the same accepted settings capabilities and protected configuration transaction as web settings. Required handoff includes node/edge schema, allowed editable properties, cycle/gate validation, draft/review/activation versions, impact on running instances, conflict/replay/readback and denied edit tests. Do not use diagram visibility to bypass approval or create a second mobile workflow authority.
+
+Plans/handoff are prepared for later review against a new user-supplied repository/folder. No target transfer, new backend or installed-contract acceptance is inferred until that destination and its authority are inspected.
