@@ -2,6 +2,28 @@
 
 Last verified: 2026-10-18
 
+## Mobile Refinement Checkpoint: Department Lead Triage, Purchasing, and Hardware PCB Tracking — 2026-10-18
+
+Comprehensive mobile on-the-go management refinement synchronized with Web Portal updates (`SSMOneWeb`):
+- **Department Lead On-The-Go Management**:
+  - **Task Pulse KPI Summary**: Live dashboard tracking Open, Today/High, Overdue, and Unassigned tasks.
+  - **Inbound & Unassigned Queue (Lead Triage)**: Displays unassigned department tasks and incoming work from other departments. Department leads can triage and assign tasks directly to team members with optimistic UI update and offline draft persistence via `SyncCoordinator`.
+  - **Team Capacity & Workload**: Visual member workload distribution showing active tasks and overdue counts per team member.
+  - **Department Projects & Deliverables**: Dedicated overview section presenting all active projects, associated open task counts, overdue warnings, and direct navigation to project deliverables and files.
+- **Purchasing & Stores On-The-Go**:
+  - **Make PO on-the-go**: Vendor selection, expected delivery date, notes, dynamic line items (MPN, description, quantity, unit cost), subtotal/tax computation; uses authoritative server RPC `create_purchase_order` with offline draft fallback (`create_po_draft`).
+  - **Spend & Financial Progress**: Live card tracking committed PO spend, quick expenses spend, open orders, and pending PRs. Includes on-the-go quick expense submission modal backed by `next_business_number` RPC and `quick_expenses` table.
+  - **Workflow Shortcuts**: One-tap navigation to "Assign Parts (Material Issue)" and "Incoming Materials (Receiving Draft)".
+- **Hardware Team On-The-Go & PCB Repair**:
+  - **PCB Repair & Board Tracking Screen**: New `PcbScreen.kt` and `PcbViewModel.kt` matching web portal `pcb.tsx` / `lib/pcb.ts`.
+  - **Board Lifecycle States**: Received, In Progress, Waiting Parts, Repaired, Failed, Scrapped, Returned with quick update modal.
+  - **Board Task Creation**: Create new PCB repair tasks on the go with board name, issue description, priority, project, assignee, root cause, and root cause notes; supports offline draft fallback via `SyncCoordinator`.
+  - **ProjectDetail Integration**: Added dedicated 4th tab ("PCB") to inspect boards and repair tasks scoped to the project, plus an overview action button.
+  - **Navigation & Policy**: Scoped via `WorkspacePolicy.kt` for engineering departments (`projects.view`, `projects.manage`), registered in `AppNavGraph.kt`, and accessible in `WorkspaceMoreScreen`.
+- **Tests & Compilation**:
+  - **87 unit tests passed** (zero failures, zero errors).
+  - Debug APK assembled cleanly (`:app:assembleDebug`) and installed to `emulator-5554` via `adb install -r`. Evidence screenshots saved under `docs/evidence/`.
+
 ## Web parity & refinement checkpoint — 2026-10-18
 
 Android client synchronized to latest Web Portal updates (sibling SSMOneWeb):

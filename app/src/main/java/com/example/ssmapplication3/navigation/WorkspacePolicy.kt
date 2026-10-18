@@ -49,7 +49,7 @@ object WorkspacePolicy {
         fun has(vararg keys: String) = CapabilitiesManager.hasAnyCapability(profile, keys.toList())
         return when (route) {
             Screen.MyDay.route, Screen.MyWork.route, Screen.Notifications.route, Screen.DepartmentWork.route, Screen.Search.route, Screen.Drive.route, Screen.More.route -> true
-            Screen.Projects.route, Screen.ProjectDetail.route, Screen.ProjectDocuments.route, Screen.EngineeringDocuments.route -> group == "engineering" && has("projects.view", "projects.manage")
+            Screen.Projects.route, Screen.ProjectDetail.route, Screen.ProjectDocuments.route, Screen.EngineeringDocuments.route, Screen.Pcb.route -> group == "engineering" && has("projects.view", "projects.manage")
             // Presentation follows the verified least-privilege backend model. RLS remains
             // authoritative and can still return no records for an otherwise visible feature.
             Screen.Inventory.route, Screen.Scanner.route -> group in setOf("engineering", "procurement", "stores", "production", "quality") &&

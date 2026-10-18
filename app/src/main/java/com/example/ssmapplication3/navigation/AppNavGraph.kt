@@ -215,7 +215,13 @@ fun AppNavGraph(
                             WorkspacePolicy.allows(profile, workspace, Screen.HrEmployees.route) ->
                                 HrEmployeesScreen(viewModel = viewModel())
                             WorkspacePolicy.category(workspace) in setOf("procurement", "stores") && WorkspacePolicy.allows(profile, workspace, Screen.Procurement.route) ->
-                                ProcurementScreen(viewModel = viewModel(), onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) }, onInventoryClick = { navController.navigate(Screen.Inventory.route) })
+                                ProcurementScreen(
+                                    viewModel = viewModel(),
+                                    onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) },
+                                    onInventoryClick = { navController.navigate(Screen.Inventory.route) },
+                                    onIssueClick = { navController.navigate(Screen.MaterialIssue.route) },
+                                    onReviewClick = { navController.navigate(Screen.PurchaseDraftReview.route) }
+                                )
                             else -> MyWorkScreen(viewModel = viewModel())
                         }
                     }
@@ -245,6 +251,9 @@ fun AppNavGraph(
                         EngineeringDocumentsScreen(viewModel = viewModel(), department = workspace,
                             departmentId = effectiveDepartmentId)
                     }
+                    composable(Screen.Pcb.route) {
+                        com.example.ssmapplication3.feature.hardware.PcbScreen(viewModel = viewModel())
+                    }
                     composable(Screen.HrEmployees.route) { HrEmployeesScreen(viewModel = remember { HrEmployeesViewModel() }) }
                     composable(Screen.MyWork.route) {
                         MyWorkScreen(viewModel = remember { MyWorkViewModel() })
@@ -258,7 +267,15 @@ fun AppNavGraph(
                             onRefresh = { scope.launch { sessionManager.refreshIdentity(); workspaceViewModel.load(); dashboard.refresh() } },
                             onLogout = { scope.launch { sessionManager.logout() } })
                     }
-                    composable(Screen.Procurement.route) { ProcurementScreen(viewModel = remember { ProcurementViewModel() }, onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) }, onInventoryClick = { navController.navigate(Screen.Inventory.route) }, onReviewClick = { navController.navigate(Screen.PurchaseDraftReview.route) }) }
+                    composable(Screen.Procurement.route) {
+                        ProcurementScreen(
+                            viewModel = viewModel(),
+                            onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) },
+                            onInventoryClick = { navController.navigate(Screen.Inventory.route) },
+                            onIssueClick = { navController.navigate(Screen.MaterialIssue.route) },
+                            onReviewClick = { navController.navigate(Screen.PurchaseDraftReview.route) }
+                        )
+                    }
                     composable(Screen.ReceivingDraft.route) { ReceivingDraftScreen(viewModel = viewModel(factory = viewModelFactory { initializer { ReceivingDraftViewModel(com.example.ssmapplication3.core.sync.SyncCoordinator.get(context), state.userProfile.id, FinalGrnRepository(context)) } })) }
                     composable(Screen.Inventory.route) { InventoryScreen(viewModel = remember { InventoryViewModel() }, onReturnsClick = { navController.navigate(Screen.MaterialReturns.route) }) }
                     composable(Screen.MaterialReturns.route) { MaterialReturnsScreen(viewModel = viewModel(factory = viewModelFactory { initializer { MaterialReturnsViewModel(stores) } })) }

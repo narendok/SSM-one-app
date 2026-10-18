@@ -10,7 +10,7 @@ class WorkspacePolicyTest {
 
     @Test fun hrAndSecurityDoNotInheritAdminOperationalMenus() {
         for (department in listOf("HR", "Human Resources", "Security", "Finance", "Operations")) {
-            for (screen in listOf(Screen.Inventory, Screen.Scanner, Screen.Procurement, Screen.MaterialIssue, Screen.Projects, Screen.ProjectDocuments)) {
+            for (screen in listOf(Screen.Inventory, Screen.Scanner, Screen.Procurement, Screen.MaterialIssue, Screen.Projects, Screen.ProjectDocuments, Screen.Pcb)) {
                 assertFalse("$department / ${screen.route}", WorkspacePolicy.allows(admin, department, screen.route))
             }
         }
@@ -22,6 +22,7 @@ class WorkspacePolicyTest {
             assertTrue(WorkspacePolicy.allows(admin, department, Screen.Inventory.route))
             assertTrue(WorkspacePolicy.allows(admin, department, Screen.ProjectDetail.route))
             assertTrue(WorkspacePolicy.allows(admin, department, Screen.ProjectDocuments.route))
+            assertTrue(WorkspacePolicy.allows(admin, department, Screen.Pcb.route))
         }
     }
 
@@ -30,6 +31,7 @@ class WorkspacePolicyTest {
         assertFalse(WorkspacePolicy.allows(noPermissions, "Hardware", Screen.Inventory.route))
         assertFalse(WorkspacePolicy.allows(noPermissions, "Hardware", Screen.Projects.route))
         assertFalse(WorkspacePolicy.allows(noPermissions, "Hardware", Screen.ProjectDocuments.route))
+        assertFalse(WorkspacePolicy.allows(noPermissions, "Hardware", Screen.Pcb.route))
         assertFalse(WorkspacePolicy.allows(admin.copy(isSuspended = true), "HR", Screen.HrEmployees.route))
     }
 

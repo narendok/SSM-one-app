@@ -15,7 +15,7 @@ import com.example.ssmapplication3.feature.myday.*
 
 @Composable
 fun WorkspaceMoreScreen(profile: UserProfile, workspace: String, onNavigate: (String) -> Unit, onRefresh: () -> Unit, onLogout: () -> Unit) {
-    val modules = listOf(Screen.MyWork, Screen.Notifications, Screen.Projects, Screen.HrEmployees, Screen.Procurement,
+    val modules = listOf(Screen.MyWork, Screen.Notifications, Screen.Projects, Screen.Pcb, Screen.HrEmployees, Screen.Procurement,
         Screen.Inventory, Screen.ReceivingDraft, Screen.PurchaseDraftReview, Screen.Assets,
         Screen.MaterialIssue, Screen.MaterialReturns, Screen.StockAdjustment, Screen.StockTransfer)
         .filter { WorkspacePolicy.allows(profile, workspace, it.route) }

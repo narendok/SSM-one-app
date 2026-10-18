@@ -164,10 +164,20 @@ fun ProjectDetailScreen(projectId: String, onDocumentsClick: () -> Unit, onProcu
                         Tab(selected = selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("Overview") })
                         Tab(selected = selectedTab == 1, onClick = { selectedTab = 1 }, text = { Text("Lifecycle") })
                         Tab(selected = selectedTab == 2, onClick = { selectedTab = 2 }, text = { Text("BOM") })
+                        Tab(selected = selectedTab == 3, onClick = { selectedTab = 3 }, text = { Text("PCB") })
                     }
                     when (selectedTab) {
                         1 -> ProjectLifecyclePanel(projectId)
                         2 -> ProjectBomPanel(projectId)
+                        3 -> {
+                            val pcbVm: com.example.ssmapplication3.feature.hardware.PcbViewModel = viewModel(
+                                key = "project-pcb-$projectId"
+                            )
+                            com.example.ssmapplication3.feature.hardware.PcbScreen(
+                                viewModel = pcbVm,
+                                projectId = projectId
+                            )
+                        }
                         else -> LazyColumn(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                             item {
                                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -247,6 +257,9 @@ fun ProjectDetailScreen(projectId: String, onDocumentsClick: () -> Unit, onProcu
                                         }
                                     }
                                 }
+                            }
+                            item {
+                                Button(onClick = { selectedTab = 3 }, modifier = Modifier.fillMaxWidth()) { Text("Inspect PCB boards & repair tasks") }
                             }
                             item {
                                 Button(onClick = { selectedTab = 2 }, modifier = Modifier.fillMaxWidth()) { Text("Inspect Bill of Materials (BOM)") }
