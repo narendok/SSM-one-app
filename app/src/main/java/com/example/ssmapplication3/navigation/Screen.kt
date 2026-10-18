@@ -22,6 +22,6 @@ sealed class Screen(val route: String, val title: String) {
     object MaterialIssue : Screen("material_issue", "Issue")
     object StockAdjustment : Screen("stock_adjustment", "Adjustment")
     object StockTransfer : Screen("stock_transfer", "Transfer")
+    object Assets : Screen("assets", "Assets & Machinery")
+    object PurchaseDraftReview : Screen("purchase_draft_review", "Import Review")
 }
-
-

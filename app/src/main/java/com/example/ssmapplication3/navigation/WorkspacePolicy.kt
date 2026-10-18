@@ -58,6 +58,8 @@ object WorkspacePolicy {
             Screen.ReceivingDraft.route -> group in setOf("procurement", "stores") && has("procurement.view", "procurement.manage", "inventory.manage")
             Screen.MaterialIssue.route, Screen.MaterialReturns.route, Screen.StockAdjustment.route, Screen.StockTransfer.route -> group in setOf("procurement", "stores") && has("inventory.manage")
             Screen.HrEmployees.route -> group == "hr"
+            Screen.Assets.route -> group in setOf("facility", "production", "operations", "engineering") || "admin" in profile.roles
+            Screen.PurchaseDraftReview.route -> group in setOf("procurement", "stores", "engineering") && has("procurement.view", "procurement.manage", "inventory.manage")
             else -> false
         }
     }

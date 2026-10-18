@@ -334,7 +334,7 @@ class DepartmentDriveViewModel : ViewModel() {
 }
 
 @Composable
-fun DepartmentDriveScreen(viewModel: DepartmentDriveViewModel, department: String, departmentId: String?, projectId: String? = null) {
+fun DepartmentDriveScreen(viewModel: DepartmentDriveViewModel, department: String, departmentId: String?, projectId: String? = null, onProjectClick: ((String) -> Unit)? = null) {
     val scopeDepartmentId = DriveListing.normalizeDepartmentId(departmentId)
     val showProjectBoms = WorkspacePolicy.showsProjectBoms(department)
     val loadedData by viewModel.state.collectAsState()
@@ -517,9 +517,15 @@ fun DepartmentDriveScreen(viewModel: DepartmentDriveViewModel, department: Strin
             }
         )
     }
-    selectedBom?.let { bom -> AlertDialog(onDismissRequest = { selectedBom = null }, confirmButton = { TextButton(onClick = { selectedBom = null }) { Text("Close") } }, title = { Text(bom.name) }, text = { Column {
-        Text("${bom.number}${bom.revision?.let { " · Rev $it" } ?: ""}")
-        Text("${bom.lineCount} line items")
-        Text(bom.sourceFilename?.let { "Source: $it" } ?: "No source spreadsheet is linked for mobile download.")
-    } }) }
+    selectedBom?.let { bom -> AlertDialog(
+        onDismissRequest = { selectedBom = null },
+        confirmButton = { TextButton(onClick = { selectedBom = null }) { Text("Close") } },
+        dismissButton = onProjectClick?.let { onClick -> { TextButton(onClick = { selectedBom = null; onClick(bom.projectId) }) { Text("Inspect BOM in Project") } } },
+        title = { Text(bom.name) },
+        text = { Column {
+            Text("${bom.number}${bom.revision?.let { " · Rev $it" } ?: ""}")
+            Text("${bom.lineCount} line items")
+            Text(bom.sourceFilename?.let { "Source: $it" } ?: "No source spreadsheet is linked for mobile download.")
+        } }
+    ) }
 }

@@ -130,11 +130,25 @@ class ProcurementViewModel : ViewModel() {
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable fun ProcurementScreen(viewModel: ProcurementViewModel, onReceivingClick: () -> Unit = {}, onInventoryClick: () -> Unit = {}) {
+@Composable fun ProcurementScreen(
+    viewModel: ProcurementViewModel,
+    onReceivingClick: () -> Unit = {},
+    onInventoryClick: () -> Unit = {},
+    onReviewClick: () -> Unit = {}
+) {
     val state by viewModel.state.collectAsState()
     var query by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
     var filter by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("All") }
-    Scaffold(topBar = { TopAppBar(title = { Text("Procurement", fontWeight = FontWeight.Bold) }, actions = { TextButton(onClick = onInventoryClick) { Text("Inventory") }; TextButton(onClick = onReceivingClick) { Text("Receiving") } }) }) { padding ->
+    Scaffold(topBar = {
+        TopAppBar(
+            title = { Text("Procurement", fontWeight = FontWeight.Bold) },
+            actions = {
+                TextButton(onClick = onReviewClick) { Text("Review Drafts") }
+                TextButton(onClick = onInventoryClick) { Text("Inventory") }
+                TextButton(onClick = onReceivingClick) { Text("Receiving") }
+            }
+        )
+    }) { padding ->
         when (val current = state) {
             ProcurementUiState.Loading -> LoadingView("Loading procurement records...")
             is ProcurementUiState.Failure -> ErrorView(current.message, viewModel::refresh)

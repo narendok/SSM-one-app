@@ -79,6 +79,8 @@ import com.example.ssmapplication3.feature.projects.ProjectsViewModel
 import com.example.ssmapplication3.feature.documents.EngineeringDocumentsScreen
 import com.example.ssmapplication3.feature.hr.HrEmployeesScreen
 import com.example.ssmapplication3.feature.hr.HrEmployeesViewModel
+import com.example.ssmapplication3.feature.facility.FacilityAssetsScreen
+import com.example.ssmapplication3.feature.procurement.PurchaseDraftReviewScreen
 import kotlinx.coroutines.launch
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
@@ -223,7 +225,7 @@ fun AppNavGraph(
                     }
                     composable(Screen.Drive.route) {
                         DepartmentDriveScreen(viewModel = viewModel(), department = workspace,
-                            departmentId = effectiveDepartmentId)
+                            departmentId = effectiveDepartmentId, onProjectClick = { navController.navigate("project/$it") })
                     }
 
                     composable(Screen.Projects.route) { ProjectsScreen(viewModel = remember { ProjectsViewModel() }, onProjectClick = { id -> navController.navigate("project/$id") }) }
@@ -256,13 +258,15 @@ fun AppNavGraph(
                             onRefresh = { scope.launch { sessionManager.refreshIdentity(); workspaceViewModel.load(); dashboard.refresh() } },
                             onLogout = { scope.launch { sessionManager.logout() } })
                     }
-                    composable(Screen.Procurement.route) { ProcurementScreen(viewModel = remember { ProcurementViewModel() }, onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) }, onInventoryClick = { navController.navigate(Screen.Inventory.route) }) }
+                    composable(Screen.Procurement.route) { ProcurementScreen(viewModel = remember { ProcurementViewModel() }, onReceivingClick = { navController.navigate(Screen.ReceivingDraft.route) }, onInventoryClick = { navController.navigate(Screen.Inventory.route) }, onReviewClick = { navController.navigate(Screen.PurchaseDraftReview.route) }) }
                     composable(Screen.ReceivingDraft.route) { ReceivingDraftScreen(viewModel = viewModel(factory = viewModelFactory { initializer { ReceivingDraftViewModel(com.example.ssmapplication3.core.sync.SyncCoordinator.get(context), state.userProfile.id, FinalGrnRepository(context)) } })) }
                     composable(Screen.Inventory.route) { InventoryScreen(viewModel = remember { InventoryViewModel() }, onReturnsClick = { navController.navigate(Screen.MaterialReturns.route) }) }
                     composable(Screen.MaterialReturns.route) { MaterialReturnsScreen(viewModel = viewModel(factory = viewModelFactory { initializer { MaterialReturnsViewModel(stores) } })) }
                     composable(Screen.MaterialIssue.route) { MaterialIssueScreen(viewModel = viewModel(factory = viewModelFactory { initializer { MaterialIssueViewModel(stores) } })) }
                     composable(Screen.StockAdjustment.route) { StockAdjustmentScreen(viewModel = viewModel(factory = viewModelFactory { initializer { StockAdjustmentViewModel(stores) } })) }
                     composable(Screen.StockTransfer.route) { StockTransferScreen(viewModel = viewModel(factory = viewModelFactory { initializer { StockTransferViewModel(stores) } })) }
+                    composable(Screen.Assets.route) { FacilityAssetsScreen(viewModel = viewModel(), onScanClick = { navController.navigate(Screen.Scanner.route) }) }
+                    composable(Screen.PurchaseDraftReview.route) { PurchaseDraftReviewScreen(viewModel = viewModel(), onNavigateReceiving = { navController.navigate(Screen.ReceivingDraft.route) }) }
                 }
             }
         }
