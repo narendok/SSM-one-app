@@ -1,6 +1,25 @@
 # SSM One Android — Agent State
 
-Last verified: 2026-10-03
+Last verified: 2026-10-18
+
+## Web parity & refinement checkpoint — 2026-10-18
+
+Android client synchronized to latest Web Portal updates (sibling SSMOneWeb):
+- **Dual-Lifecycle BOM Inspection (Tentative vs Released)**: Implemented in `ProjectBomScreen.kt` and integrated as tab in `ProjectDetailScreen` and linked from `DepartmentDriveScreen`. Features stock match status chips (`EXACT_MATCH`, `SUBSTITUTE_AVAILABLE`, `SHORTAGE`), designator references, and component search.
+- **Common Project Analysis**: Matches web `ProjectAnalysisSummary` (commit `e08b7a0`), presenting current phase, visible blockers, next open work, and canonical department task distributions on `ProjectDetailScreen`.
+- **Facility Assets & Machinery**: Implemented in `FacilityAssetsScreen.kt` tracking operational status, calibration expiry badges, and QR scan trigger.
+- **Purchase Draft Import Review**: Implemented `PurchaseDraftReviewScreen.kt` ensuring invoice and manifest draft imports remain strictly gated before physical receiving.
+- **Dark Mode Palette Refinement**: Aligned theme tokens in `ui/theme/Color.kt` and `Theme.kt` with web charcoal/slate industrial styling (`#090D16`, `#111827`, `#1E293B`, `#60A5FA`).
+- **Live Emulator Verification**: Verified on `emulator-5554` (Pixel 7 / API 35) with screenshots saved under `docs/evidence/`:
+  - `20261018_app_refinement_emulator_loaded.png` (Authenticated Dashboard with live tasks)
+  - `20261018_more_tab.png` (More tab displaying Import Review & Assets entries)
+  - `20261018_import_review_queue.png` (Draft Import Review queue)
+  - `20261018_facility_assets_screen.png` (Assets & Machinery)
+  - `20261018_bcus_project_overview_loaded.png` (Project detail with Common Project Analysis)
+  - `20261018_bcus_bom_loaded.png` (Project BOM tab)
+  - `20261018_drive_screen.png` (Drive screen with Project BOMs section)
+- **Tests & Build**: All 79 unit tests passed; debug build produced.
+- **Remote Git Sync**: Pushed to `https://github.com/narendok/SSMApplication3` (`main`).
 
 ## Final-framework implementation checkpoint — 2026-10-03
 
