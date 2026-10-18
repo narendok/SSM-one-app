@@ -412,3 +412,19 @@ Web product: **SSMone**. Android application/display name: **SSMone-App**. Prefe
 - Android: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App`
 
 Both SSMone-Web and SSMone-App are actual physical directories under C:/Users/Admin/AndroidStudioProjects/SSMone, with separate Git repositories and histories. Neither entry is a junction or duplicate checkout; this parent is not a monorepo. The former SSMOneWeb and SSMApplication3 roots no longer exist. Preserve historical backups, application/package identity, backend/project IDs and official document names. Use these physical workspace paths for new Studio/Antigravity sessions and schedulers.
+
+## People self-service and shared intake planning boundary — 18 October 2026
+
+User-requested scope; not implementation or device/backend acceptance. The web master plan section "People workspace and shared document intake — detailed UI delivery scope" owns the shared UX specification and backend work. This Android plan owns mobile delivery only; preserve the existing stage order and verified backend handoff gate.
+
+- Web only: create/customize/publish leave and travel policies; configure entitlement, approval routing, audiences and templates. No editable policy administration on Android.
+- Mobile: simple People overview, own leave balance/list/detail/request, calendar with List alternative, holidays, applicable policy reader and exact-version acknowledgement where required. Authorized team availability/approval is a separate backend capability; no blanket team personnel access or private leave reasons.
+- Attendance and travel daily flows remain planned subject to explicit time/shift/eligibility/financial rules and verified contracts. No biometric, GPS, payroll or arbitrary entitlement assumptions.
+- Reuse existing navigation, repositories, Room drafts and common SyncCoordinator. Label cached freshness; request drafts never promise automatic posting without a supported queued executor. Authoritative calculation, approvals and publication stay online-required.
+- Shared Import document may accept supported files/photos/scans, present source and extracted fields for review, map to an authorized existing draft and preserve provenance. Reuse existing shared import contracts; never create mobile-only business documents/official numbers or post stock, finance or procurement actions from extraction.
+- Customer-fill links must reuse accepted scoped resolver/publication/submit contracts. Copying a link never means issuing an invitation. A customer sees only allowed fields for the exact customer/document revision; expiry, revocation, replay and denied cross-customer access require acceptance.
+- Verify employee identity and applicable policy from the server; UI/cached roles are not authority. Financial approval remains separately authorized management workflow, not implied by Sales import, Finance review or a client submission.
+
+UI handoff: P01 overview; P02 own leave list; P03 request form; P04 detail/history; P05 calendar/agenda; P06 holidays; P07/P08 policy library/reader; P09/P10 scoped team approval/availability when accepted; P13/P14 attendance/travel only after rules. P11/P12 policy administration/settings remain web-only. I01-I05 shared intake/review/conversion/draft/customer-fill flows use phone-friendly focused screens, not a competing mobile document engine.
+
+Acceptance must distinguish compile/tests/APK success, actual device flows and live least-privilege/readback acceptance. Use approved test identities only. No new mobile feature, production request, backend change or release was performed by this planning update.
