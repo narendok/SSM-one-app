@@ -310,3 +310,7 @@ Current source already includes project/lifecycle readers and completed historic
 - Git repository `https://github.com/narendok/SSMApplication3.git` initialized, configured with comprehensive .gitignore, and synced on branch `main`.
 - Baseline `:app:compileDebugKotlin` and `:app:testDebugUnitTest` verified exiting 0 with zero errors/failures.
 
+
+## Current workspace naming — 18 October 2026
+
+Android display/Gradle name: SSMone-App. Preferred entry: C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App. Web: C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web, product SSMone. Entries are junctions to existing physical roots because Android is locked by active tools; histories/data/package IDs remain unchanged. See AGENTS.md naming notes.

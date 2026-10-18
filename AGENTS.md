@@ -364,4 +364,12 @@ current evidence.
 
 ## Planning scope
 
-Use docs/planning/SSM_ONE_ANDROID_BUILD_PLAN.md for Android implementation, stage order and build/device verification. The web portal master plan lives in sibling SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md and owns web/backend work plus contract handoff only. Mobile contracts stay under docs/backend-handoff, mobile evidence under docs/evidence; web evidence stays under SSMOneWeb/docs/evidence. Do not merge the two build queues.
+Use docs/planning/SSM_ONE_ANDROID_BUILD_PLAN.md for Android implementation, stage order and build/device verification. The web portal master plan lives in SSMone-Web/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md and owns web/backend work plus contract handoff only. Mobile contracts stay under docs/backend-handoff, mobile evidence under docs/evidence; web evidence stays under SSMone-Web/docs/evidence. Do not merge the two build queues.
+
+## Workspace names — 18 October 2026
+
+Web product: **SSMone**. Android application/display name: **SSMone-App**. Preferred workspace entry paths:
+- Web: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web`
+- Android: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App`
+
+Both entries are directory junctions to the existing physical repositories (`C:/Users/Admin/AndroidStudioProjects/SSMOneWeb` and `C:/Users/Admin/AndroidStudioProjects/SSMApplication3`). Windows blocked moving the active Android checkout; no physical relocation is claimed. Each entry opens the same original files and separate Git history, with no duplicate checkout or parent monorepo. Existing paths remain valid for open tools. Historical backups, archived evidence, backend/project IDs, Android application ID/package and official document names/numbers are unchanged. Use the preferred paths for new Studio/Antigravity sessions and scheduler work. A later physical relocation requires released directory locks and a separate checked move; never delete an original root thinking the junction is a backup.

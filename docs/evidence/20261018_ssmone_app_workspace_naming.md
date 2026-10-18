@@ -1,0 +1,9 @@
+# SSMone-App workspace naming — 18 October 2026
+
+User approved product/folder naming alignment. Android application label and Gradle rootProject.name are SSMone-App. Application ID/namespace, OAuth scheme, backend credentials, auth/data and Git remote were not renamed. Active plans, agent context/instructions and scheduler paths use the shared workspace entries. Historical evidence/contracts retain their original identifiers.
+
+Preferred entry C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App is a junction to the existing SSMApplication3 physical repository. A checked Move-Item attempt failed because a running process holds the directory; the source remained intact. No forced termination, reset, overwrite or duplicate checkout. Sibling SSMone-Web links to the existing web repository. Parent README documents the arrangement. Existing Studio/Codex paths remain valid. Android Studio was launched with the new entry; UI project-title refresh was not independently inspected.
+
+Verification: assembleDebug passed in 46s (7 executed, 32 up-to-date). aapt confirms application-label SSMone-App and unchanged package com.example.ssmapplication3. adb install -r succeeded, preserving existing app data. am start initially timed out; subsequent dumpsys confirms MainActivity top-resumed with a live process. Installed/local APK SHA-256 match: 00566dfc0be0363cb42bd48ba74db90876e05f84a2d5c9be564a2649a73c87c9. This verifies packaging/install/resume only, not the still-pending PCB/import backend workflows. No business operation or production release.
+
+Android progress monitor retains its 10-minute cadence and quiet-on-unchanged behavior, now using the new preferred path. Web monitor remains separate at five minutes. Antigravity should open the new Android entry and follow AGENTS.md. The pre-existing monitoring-note edit is not bundled into the naming commit.

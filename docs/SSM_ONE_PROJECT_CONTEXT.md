@@ -1,6 +1,6 @@
 # SSM One — Project Context and Current State
 
-Web/backend requirements and delivery roadmap: [Web portal plan location](../../SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md), refined through 14 October 2026. It supersedes dated planning layouts and incorporates the latest Sales, feasibility, four-group Drive, Excel register and DOCX refinements. The implementation checkpoints below remain historical evidence, not newly verified completion claims.
+Web/backend requirements and delivery roadmap: [Web portal plan location](C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md), refined through 14 October 2026. It supersedes dated planning layouts and incorporates the latest Sales, feasibility, four-group Drive, Excel register and DOCX refinements. The implementation checkpoints below remain historical evidence, not newly verified completion claims.
 
 Latest implementation checkpoint: [2026-10-03 final-framework increment](evidence/final-framework-implementation-2026-10-03.md).
 Latest follow-on: [department Drive categories and ownership preflight](evidence/department-drive-categories-2026-10-03.md),
@@ -12,7 +12,7 @@ source work is reported implemented; protected lifecycle acceptance and legacy
 Drive ownership/source mapping remain pending. The full final target below is
 not complete. Preserve the dated boundaries in the checkpoint.
 
-Latest target plan: [Web portal master plan — refined 2026-10-14](../../SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md),
+Latest target plan: [Web portal master plan — refined 2026-10-14](C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md),
 derived from the user's final DOCX. It maps the full document inventory, nine macro
 stages and web/mobile delivery packs into the eight existing departments. This is
 a planning update; it does not deploy contracts, change roles or update historical
@@ -646,3 +646,11 @@ The backend reports use 5A–5F labels for GRN, issue, return, transfer, adjustm
 The latest handoff and BACKEND_GAPS retain unresolved environment separation, mobile authorization acceptance, legacy migration/storage reconciliation, and outbound webhook delivery gaps. RTV dispatch remains record-only. The reported 77 passing tests do not establish completion of live-session RLS or concurrent transaction acceptance.
 
 This task updates only AGENTS.md and this context document. Persistent-state file creation, build/test verification, backend alignment, and Stage 5 implementation belong to a subsequent authorized task.
+
+## Workspace names — 18 October 2026
+
+Web product: **SSMone**. Android application/display name: **SSMone-App**. Preferred workspace entry paths:
+- Web: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web`
+- Android: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App`
+
+Both entries are directory junctions to the existing physical repositories (`C:/Users/Admin/AndroidStudioProjects/SSMOneWeb` and `C:/Users/Admin/AndroidStudioProjects/SSMApplication3`). Windows blocked moving the active Android checkout; no physical relocation is claimed. Each entry opens the same original files and separate Git history, with no duplicate checkout or parent monorepo. Existing paths remain valid for open tools. Historical backups, archived evidence, backend/project IDs, Android application ID/package and official document names/numbers are unchanged. Use the preferred paths for new Studio/Antigravity sessions and scheduler work. A later physical relocation requires released directory locks and a separate checked move; never delete an original root thinking the junction is a backup.

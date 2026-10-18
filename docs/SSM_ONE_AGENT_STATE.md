@@ -94,3 +94,7 @@ The next live stock-changing acceptance is a final GRN against the approved dedi
 - Compile, unit test, and debug APK build gate completed without test failures.
 
 - Repeated UAT form-entry checks left Review final GRN disabled when the required receipt fields were not valid; all unsaved form state was discarded and no GRN RPC was called.
+
+## Current workspace naming — 18 October 2026
+
+Android display/Gradle name: SSMone-App. Preferred entry: C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App. Web: C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web, product SSMone. Entries are junctions to existing physical roots because Android is locked by active tools; histories/data/package IDs remain unchanged. See AGENTS.md naming notes.

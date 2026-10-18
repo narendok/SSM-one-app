@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SSM Application3"
+rootProject.name = "SSMone-App"
 include(":app")

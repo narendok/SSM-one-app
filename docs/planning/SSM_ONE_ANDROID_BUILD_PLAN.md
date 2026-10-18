@@ -1,10 +1,10 @@
-# SSM One — Android Mobile Managing Portal Master Plan
+# SSMone-App — Android Mobile Managing Portal Master Plan
 
 **Document Version:** 2.0 (Refined Architecture & Implementation Plan)  
 **Date:** 18 October 2026  
-**Target Repository:** `c:/Users/Admin/AndroidStudioProjects/SSMApplication3`  
-**Web / Backend Master Plan Reference:** [`SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMOneWeb/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md)  
-**Authoritative Backend Contracts:** [`docs/backend-handoff/mobile_backend_contract.json`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/mobile_backend_contract.json), [`docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md), [`docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md)
+**Target Repository:** `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App`
+**Web / Backend Master Plan Reference:** [`SSMone-Web/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web/docs/planning/SSM_ONE_WEB_PORTAL_MASTER_PLAN.md)
+**Authoritative Backend Contracts:** [`docs/backend-handoff/mobile_backend_contract.json`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/mobile_backend_contract.json), [`docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md), [`docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md)
 
 ---
 
@@ -24,13 +24,13 @@ flowchart TD
         AUDIT["Immutable Audit Ledger & Data Provenance"]
     end
 
-    subgraph WebPortal["Web Portal (Lovable d758dbf2 / SSMOneWeb)"]
+    subgraph WebPortal["Web Portal (Lovable d758dbf2 / SSMone-Web)"]
         WEB_UI["TanStack Start / React 19 / Vite Web App"]
         WEB_WORKSPACES["8 Departmental Web Portals"]
         WEB_EDITORS["Rich DOCX, XLSX & Lifecycle Generators"]
     end
 
-    subgraph AndroidClient["Android Client (Kotlin / Compose / SSMApplication3)"]
+    subgraph AndroidClient["Android Client (Kotlin / Compose / SSMone-App)"]
         COMPOSE["Jetpack Compose UI (Light & Dark Theme)"]
         VIEWMODEL["AndroidX ViewModels + StateFlow"]
         REPO["Repository Layer (Supabase Kotlin SDK)"]
@@ -295,12 +295,12 @@ The Android client directly implements data structures and calls corresponding t
 
 | Backend Contract Artifact | Purpose & Android Mapping |
 |---|---|
-| [`mobile_backend_contract.json`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/mobile_backend_contract.json) | Complete machine-readable catalog of all 180+ tables, foreign keys, columns, RPC signatures, and bucket paths. |
-| [`MOBILE_BACKEND_CONTRACT.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md) | Object classification matrix: `MOBILE_READ_SAFE`, `ONLINE_REQUIRED`, `WEB_ONLY`. |
-| [`ANDROID_BACKEND_HANDOFF.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md) | Safe configuration boundaries, operational projection specifications, RLS rules. |
-| [`LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/LIFECYCLE_ANDROID_READ_CONTRACT_RENDERED_2026-10-03.txt) | Specification for displaying HW_01–HW_37 stages, department templates, and dependency chains. |
-| [`VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md) | Contract for `operational_*` safe views omitting financial/commercial data. |
-| [`VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md`](file:///c:/Users/Admin/AndroidStudioProjects/SSMApplication3/docs/backend-handoff/VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md) | Signatures and idempotency rules for `post_material_issue` and `post_material_return`. |
+| [`mobile_backend_contract.json`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/mobile_backend_contract.json) | Complete machine-readable catalog of all 180+ tables, foreign keys, columns, RPC signatures, and bucket paths. |
+| [`MOBILE_BACKEND_CONTRACT.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/MOBILE_BACKEND_CONTRACT.md) | Object classification matrix: `MOBILE_READ_SAFE`, `ONLINE_REQUIRED`, `WEB_ONLY`. |
+| [`ANDROID_BACKEND_HANDOFF.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/ANDROID_BACKEND_HANDOFF.md) | Safe configuration boundaries, operational projection specifications, RLS rules. |
+| [`LIFECYCLE_ANDROID_READ_CONTRACT_2026-10-02.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/LIFECYCLE_ANDROID_READ_CONTRACT_RENDERED_2026-10-03.txt) | Specification for displaying HW_01–HW_37 stages, department templates, and dependency chains. |
+| [`VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/VERIFIED_SAFE_PROCUREMENT_CONTRACT_2026-09-26.md) | Contract for `operational_*` safe views omitting financial/commercial data. |
+| [`VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md`](file:///C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App/docs/backend-handoff/VERIFIED_MATERIAL_ISSUE_RETURN_CONTRACT_2026-09-27.md) | Signatures and idempotency rules for `post_material_issue` and `post_material_return`. |
 
 ---
 
@@ -404,3 +404,11 @@ Every implementation increment must provide documented evidence meeting these ga
 3. **Packaging Gate**: `:app:assembleDebug` successfully produces a valid debug APK.
 4. **Device / Emulator Gate**: Verified on an Android emulator or physical device; screenshot or CLI log preserved in `docs/evidence/`.
 5. **Contract Conformance Gate**: Network calls must conform strictly to `mobile_backend_contract.json` without inventing endpoints, columns, or tables.
+
+## Workspace names — 18 October 2026
+
+Web product: **SSMone**. Android application/display name: **SSMone-App**. Preferred workspace entry paths:
+- Web: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-Web`
+- Android: `C:/Users/Admin/AndroidStudioProjects/SSMone/SSMone-App`
+
+Both entries are directory junctions to the existing physical repositories (`C:/Users/Admin/AndroidStudioProjects/SSMOneWeb` and `C:/Users/Admin/AndroidStudioProjects/SSMApplication3`). Windows blocked moving the active Android checkout; no physical relocation is claimed. Each entry opens the same original files and separate Git history, with no duplicate checkout or parent monorepo. Existing paths remain valid for open tools. Historical backups, archived evidence, backend/project IDs, Android application ID/package and official document names/numbers are unchanged. Use the preferred paths for new Studio/Antigravity sessions and scheduler work. A later physical relocation requires released directory locks and a separate checked move; never delete an original root thinking the junction is a backup.
